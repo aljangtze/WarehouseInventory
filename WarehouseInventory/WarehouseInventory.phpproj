@@ -1,0 +1,511 @@
+"General"
+{
+"ProjectType" = "local"
+"AutoLoadTemplate" = "%s.php;class.%s.php;"
+"IncludeDirs" = ""
+}
+"Configurations"
+{
+    "Release|PHP 7.0"
+    {
+    }
+    "Release|PHP 5.6"
+    {
+    }
+}
+"Files"
+{
+    "add_godown_background.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "add_group.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "add_product.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "add_requestion.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "add_requestion_background.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "add_role.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "add_rule.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "add_sale.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "add_user.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "admin.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "ajax.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "auth.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "auth_v2.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "categorie.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "change_password.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "daily_sales.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "delete_categorie.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "delete_group.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "delete_media.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "delete_product.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "delete_sale.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "delete_user.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "edit_account.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "edit_categorie.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "edit_group.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "edit_product.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "edit_rule.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "edit_sale.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "edit_user.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "get_modelnumber.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "get_requestion_details.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "get_requestion_details_server.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "get_specifications.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "group.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "home.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "includes"
+    {
+    "ProjRelPath" = "T"
+    }
+    "includes\\config.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "includes\\database.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "includes\\functions.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "includes\\load.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "includes\\session.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "includes\\sql.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "includes\\upload.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "index.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "layouts"
+    {
+    "ProjRelPath" = "T"
+    }
+    "layouts\\admin_menu.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "layouts\\footer.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "layouts\\header.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "layouts\\special_menu.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "layouts\\user_menu.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "libs"
+    {
+    "ProjRelPath" = "T"
+    }
+    "libs\\css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "libs\\css\\main.css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "libs\\images"
+    {
+    "ProjRelPath" = "T"
+    }
+    "libs\\js"
+    {
+    "ProjRelPath" = "T"
+    }
+    "libs\\js\\functions.js"
+    {
+    "ProjRelPath" = "T"
+    }
+    "LICENSE"
+    {
+    "ProjRelPath" = "T"
+    }
+    "login_v2.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "logout.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "manage_godown_entrys.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "manage_godown_entrys_background.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "manage_requestions.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "media.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "monthly_sales.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "oswa_inv.sql"
+    {
+    "ProjRelPath" = "T"
+    }
+    "product.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "profile.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "README.md"
+    {
+    "ProjRelPath" = "T"
+    }
+    "role.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "rule.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "sale_report_process.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "sales.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "sales_report.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "server_processing.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\add_group.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\add_product.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\add_sale.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\add_user.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\admin.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\ajax.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\auth.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\auth_v2.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\categorie.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\change_password.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\daily_sales.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\delete_categorie.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\delete_group.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\delete_media.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\delete_product.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\delete_sale.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\delete_user.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\edit_account.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\edit_categorie.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\edit_group.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\edit_product.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\edit_sale.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\edit_user.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\group.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\home.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\index.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\LICENSE"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\login_v2.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\logout.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\media.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\monthly_sales.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\oswa_inv.sql"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\product.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\products"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\products\\.DS_Store"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\products\\no_image.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\profile.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\README.md"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\sale_report_process.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\sales.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\sales_report.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\users"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\users.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\users\\.DS_Store"
+    {
+    "ProjRelPath" = "T"
+    }
+    "uploads\\users\\no_image.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "users.php"
+    {
+    "ProjRelPath" = "T"
+    }
+}
+"ProjStartupServices"
+{
+}
+"Globals"
+{
+}
+"References"
+{
+}

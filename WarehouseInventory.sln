@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{1863889A-00DF-4350-BA39-669CA949CB81}") = "WarehouseInventory", "WarehouseInventory\WarehouseInventory.phpproj", "{A37FD345-6D9C-4F0B-99C5-9863C7D9BA3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|PHP 5.6 = Release|PHP 5.6
+		Release|PHP 7.0 = Release|PHP 7.0
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A37FD345-6D9C-4F0B-99C5-9863C7D9BA3A}.Release|PHP 5.6.ActiveCfg = Release|PHP 5.6
+		{A37FD345-6D9C-4F0B-99C5-9863C7D9BA3A}.Release|PHP 5.6.Deploy.0 = Release|PHP 5.6
+		{A37FD345-6D9C-4F0B-99C5-9863C7D9BA3A}.Release|PHP 7.0.ActiveCfg = Release|PHP 7.0
+		{A37FD345-6D9C-4F0B-99C5-9863C7D9BA3A}.Release|PHP 7.0.Deploy.0 = Release|PHP 7.0
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

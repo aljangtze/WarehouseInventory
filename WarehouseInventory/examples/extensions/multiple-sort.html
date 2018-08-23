@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiple Sort</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+    <link rel="stylesheet" href="http://issues.wenzhixin.net.cn/bootstrap-table/assets/examples.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+    <script src="bootstrap-table-multiple-sort.js"></script>
+    <script src="http://issues.wenzhixin.net.cn/bootstrap-table/ga.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Multiple Sort</h1>
+        <table id="table"
+                data-toggle="table"
+                data-flat="true"
+                data-search="true"
+                data-show-columns="true"
+                data-show-multi-sort="true" 
+                data-sort-priority='[{"sortName": "github.count.forks","sortOrder":"desc"},{"sortName":"github.count.stargazers","sortOrder":"desc"}]'
+                data-url="../json/data3.json">
+            <thead>
+            <tr>
+                <th data-field="github.name" data-sortable="true">Name</th>
+                <th data-field="github.count.stargazers" data-sortable="true">Stargazers</th>
+                <th data-field="github.count.forks" data-sortable="true">Forks</th>
+                <th data-field="github.description" data-sortable="true">Description</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
