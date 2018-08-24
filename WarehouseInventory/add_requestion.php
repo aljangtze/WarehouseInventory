@@ -3,6 +3,8 @@ $page_title = '新建请购单';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
+
+include_once('layouts/header.php');
 ?>
 <?php
 $requestion_QSInfo = getRequestionCode();
@@ -12,6 +14,7 @@ if (null == $requestion_QSInfo) {
     $requestion_code = $requestion_QSInfo["code"];
     $requestion_code_number = $requestion_QSInfo["number"];
 }
+
 getRequestionCode();
 $products = find_product('product');
 $all_categories = find_all('categories');
@@ -20,10 +23,6 @@ $qualification = find_all('qualification');
 $projects = find_all('project');
 $units = find_all('units');
 $users = find_all('users');
-//if(!$product){
-//  $session->msg("d","Missing product id.");
-//  redirect('add_requestion.php');
-//}
 ?>
 
 <div class="modal fade" id="myModal">
@@ -532,7 +531,7 @@ $users = find_all('users');
     }
 
 </script>
-<?php include_once('layouts/header.php'); ?>
+
 <div class="row">
     <div class="col-md-12" id="head_msg_info">
         <?php echo display_msg($msg); ?>

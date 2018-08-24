@@ -3,6 +3,7 @@ $page_title = '确认请购单';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
+include_once('layouts/header.php');
 ?>
 <?php
 $requestion_QSInfo = getRequestionCode();
@@ -142,7 +143,7 @@ $requestions = get_requestion_by_operator($user_id, 0);
         window.open("get_requestion_details.php?requestion_id=" + g_requestion_id);
     }
 </script>
-<?php include_once('layouts/header.php'); ?>
+
 <div class="row">
     <div class="col-md-12" id="head_msg_info">
         <?php echo display_msg($msg); ?>

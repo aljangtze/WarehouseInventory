@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/WarehouseInventory/add_requestion.php" line="434" />
-    <bookmark url="file://$PROJECT_DIR$/WarehouseInventory/add_requestion.php" line="384" />
+    <bookmark url="file://$PROJECT_DIR$/WarehouseInventory/add_requestion.php" line="433" />
+    <bookmark url="file://$PROJECT_DIR$/WarehouseInventory/add_requestion.php" line="383" />
     <bookmark url="file://$PROJECT_DIR$/WarehouseInventory/add_godown.php" line="184" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fed8dfb7-0aba-46ea-a789-41847f183cdb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/WarehouseInventory/libs/css/bootstrap-table.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WarehouseInventory/libs/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WarehouseInventory/libs/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WarehouseInventory/libs/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WarehouseInventory/libs/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WarehouseInventory/libs/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WarehouseInventory/libs/js/bootstrap-datepicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WarehouseInventory/libs/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WarehouseInventory/libs/js/vue.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dump20180824-3.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WarehouseInventory/add_godown_contract.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WarehouseInventory/add_godown_contract_background.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/includes/upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/includes/upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/layouts/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/layouts/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/layouts/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/layouts/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/manage_contract_price.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/manage_contract_price.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WarehouseInventory/add_requestion.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/add_requestion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WarehouseInventory/manage_requestion_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/manage_requestion_details.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,6 +23,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="add_requestion.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseInventory/add_requestion.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
+              <folding>
+                <element signature="e#150#155#0#PHP" />
+                <element signature="n#src#0;n#img#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#script#0;n#!!top" />
+                <element signature="e#53#60#1" expanded="true" />
+                <element signature="e#53#60#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add_godown_contract.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseInventory/add_godown_contract.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1672">
+              <caret line="213" column="9" lean-forward="true" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="9" />
+              <folding>
+                <element signature="e#370#517#0#HTML" />
+                <element signature="e#53#60#1" expanded="true" />
+                <element signature="e#53#60#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add_godown_contract_background.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WarehouseInventory/add_godown_contract_background.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="627">
+              <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manage_requestion_details.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseInventory/manage_requestion_details.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="35" />
+              <folding>
+                <element signature="n#script#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="load.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WarehouseInventory/includes/load.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -40,105 +83,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oswa_inv.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseInventory/oswa_inv.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseInventory/layouts/header.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gennerate_contract.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WarehouseInventory/gennerate_contract.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="105" column="44" lean-forward="true" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
-              <folding>
-                <element signature="n#get_supplier_product#0;n#!!top" />
-                <element signature="n#script#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseInventory/layouts/footer.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sql.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseInventory/includes/sql.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manage_contract_price.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseInventory/manage_contract_price.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1567">
-              <caret line="162" column="50" selection-start-line="162" selection-start-column="50" selection-end-line="162" selection-end-column="50" />
-              <folding>
-                <element signature="e#53#60#1" expanded="true" />
-                <element signature="e#53#60#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="add_requestion.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseInventory/add_requestion.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="n#src#0;n#img#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#53#60#1" expanded="true" />
-                <element signature="e#53#60#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseInventory/users.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="upload.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseInventory/includes/upload.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>chargeInfo</find>
-      <find>合同</find>
       <find>add</find>
       <find>update</find>
       <find>标为</find>
@@ -167,6 +115,8 @@
       <find>&lt;!DOCTYPE html&gt;</find>
       <find>html</find>
       <find>Doc</find>
+      <find>$requestion_QSInfo</find>
+      <find>单价</find>
     </findStrings>
     <dirStrings>
       <dir>D:\Projects\Webchat\DringTestServer\WarehouseInventory</dir>
@@ -180,7 +130,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/WarehouseInventory/get_requestion_list.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/add_requestion_background.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/add_godown_background.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/manage_godown_entrys_background.php" />
@@ -208,7 +157,6 @@
         <option value="$PROJECT_DIR$/WarehouseInventory/examples/extensions/multiple-sort.html" />
         <option value="$PROJECT_DIR$/WarehouseInventory/multiple-sort.html" />
         <option value="$PROJECT_DIR$/WarehouseInventory/multiple-sort.php" />
-        <option value="$PROJECT_DIR$/WarehouseInventory/add_requestion.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/manage_requestion_details_server.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/manage_requestion_products_server.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/includes/database.php" />
@@ -216,7 +164,6 @@
         <option value="$PROJECT_DIR$/WarehouseInventory/test_table5.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/gennerate_contact_server.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/gennerate_contact.php" />
-        <option value="$PROJECT_DIR$/WarehouseInventory/manage_requestion_details.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/manage_contact_details_server.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/manage_contact_details.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/manage_contract_price_server.php" />
@@ -231,6 +178,9 @@
         <option value="$PROJECT_DIR$/WarehouseInventory/includes/upload.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/layouts/header.php" />
         <option value="$PROJECT_DIR$/WarehouseInventory/layouts/footer.php" />
+        <option value="$PROJECT_DIR$/WarehouseInventory/manage_requestion_details.php" />
+        <option value="$PROJECT_DIR$/WarehouseInventory/add_requestion.php" />
+        <option value="$PROJECT_DIR$/WarehouseInventory/add_godown_contract.php" />
       </list>
     </option>
   </component>
@@ -308,6 +258,24 @@
               <item name="WarehouseInventory" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
             </path>
+            <path>
+              <item name="WarehouseInventory" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+              <item name="PHP" type="5114b859:PhpExternalLibrariesNodePatcher$PatchedLibraryNode" />
+            </path>
+            <path>
+              <item name="WarehouseInventory" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+              <item name="PHP" type="5114b859:PhpExternalLibrariesNodePatcher$PatchedLibraryNode" />
+              <item name="WarehouseInventory" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WarehouseInventory" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+              <item name="PHP" type="5114b859:PhpExternalLibrariesNodePatcher$PatchedLibraryNode" />
+              <item name="WarehouseInventory" type="462c0819:PsiDirectoryNode" />
+              <item name="WarehouseInventory" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -324,12 +292,13 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Projects\Webchat\DringTestServer\WarehouseInventory\WarehouseInventory" />
-      <recent name="D:\Projects\Webchat\DringTestServer\WarehouseInventory\WarehouseInventory\libs\js" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Projects\Webchat\DringTestServer\WarehouseInventory\WarehouseInventory" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\Webchat\WarehouseInventory\WarehouseInventory" />
+      <recent name="D:\Projects\Webchat\DringTestServer\WarehouseInventory\WarehouseInventory" />
+      <recent name="D:\Projects\Webchat\DringTestServer\WarehouseInventory\WarehouseInventory\libs\js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -393,12 +362,12 @@
       <workItem from="1534987888709" duration="8779000" />
       <workItem from="1535002172506" duration="565000" />
       <workItem from="1535002752281" duration="57000" />
-      <workItem from="1535002822772" duration="12004000" />
+      <workItem from="1535002822772" duration="14402000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="385660000" />
+    <option name="totallyTimeSpent" value="388058000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
@@ -481,20 +450,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/superglobals/_superglobals.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="173" selection-start-line="173" selection-end-line="173" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/mysqli/mysqli.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="1566" column="9" selection-start-line="1566" selection-start-column="9" selection-end-line="1566" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WarehouseInventory/add_requestion_background.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="267">
@@ -599,13 +554,6 @@
     <entry file="file://$PROJECT_DIR$/WarehouseInventory/get_requestion_details_server.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-171" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseInventory/manage_requestion_details.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-148">
-          <caret line="171" column="24" selection-start-line="171" selection-start-column="24" selection-end-line="171" selection-end-column="75" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WarehouseInventory/manage_requestion_details_server.php">
@@ -790,13 +738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseInventory/includes/load.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WarehouseInventory/oswa_inv.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -809,17 +750,6 @@
         <state relative-caret-position="1567">
           <caret line="162" column="50" selection-start-line="162" selection-start-column="50" selection-end-line="162" selection-end-column="50" />
           <folding>
-            <element signature="e#53#60#1" expanded="true" />
-            <element signature="e#53#60#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseInventory/add_requestion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#src#0;n#img#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="e#53#60#1" expanded="true" />
             <element signature="e#53#60#1" expanded="true" />
           </folding>
@@ -862,6 +792,56 @@
             <element signature="n#get_supplier_product#0;n#!!top" />
             <element signature="n#script#0;n#!!top" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseInventory/includes/load.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseInventory/manage_requestion_details.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="35" />
+          <folding>
+            <element signature="n#script#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseInventory/add_requestion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
+          <folding>
+            <element signature="e#150#155#0#PHP" />
+            <element signature="n#src#0;n#img#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#script#0;n#!!top" />
+            <element signature="e#53#60#1" expanded="true" />
+            <element signature="e#53#60#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseInventory/add_godown_contract.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1672">
+          <caret line="213" column="9" lean-forward="true" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="9" />
+          <folding>
+            <element signature="e#370#517#0#HTML" />
+            <element signature="e#53#60#1" expanded="true" />
+            <element signature="e#53#60#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseInventory/add_godown_contract_background.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
         </state>
       </provider>
     </entry>
