@@ -7,7 +7,7 @@ page_require_level(2);
 function get_contact_details()
 {
     global $db;
-     $sql = "select a.*, u.name as initiator_name, s.name as supplier_name from contract_entry as a 
+    $sql = "select a.*, u.name as initiator_name, s.name as supplier_name from contract_entry as a 
             left join users as u on a.initiator=u.id
             left join supplier as s on a.supplier_id=s.id 
             where a.status=0";
@@ -89,7 +89,7 @@ function get_contact_details()
 
                 $("#tb_details").bootstrapTable('load', data);
             },
-            error:function (request) {
+            error: function (request) {
 
             }
         });
@@ -123,8 +123,12 @@ function get_contact_details()
                         <th class="text-center" data-switchable="false" data-visible="false" data-field="id">id</th>
                         <th class="text-center" data-switchable="false" data-visible="true" data-field="code">合同单号</th>
                         <th class="text-center" data-field="initiator_name" data-sortable="true">创建人</th>
-                        <th class="text-center" data-switchable="false" data-field="supplier_name" data-sortable="true">供应商</th>
-                        <th class="text-center" data-field="status" data-formatter="formatter_status" data-sortable="true">状态</th>
+                        <th class="text-center" data-switchable="false" data-field="supplier_name" data-sortable="true">
+                            供应商
+                        </th>
+                        <th class="text-center" data-field="status" data-formatter="formatter_status"
+                            data-sortable="true">状态
+                        </th>
                     </tr>
                     </thead>
                     <tbody id="requestion_list" class="text-center">
@@ -150,23 +154,30 @@ function get_contact_details()
                     </div>
                 </div>
             </div>
-            <table align="center" data-height="750" id="tb_details" data-click-to-select="true" data-toolbar="#toolbar" data-unique-id="id">
+            <table align="center" data-height="750" id="tb_details" data-click-to-select="true" data-toolbar="#toolbar"
+                   data-unique-id="id">
                 <thead>
                 <tr>
                     <th data-class="text-center" data-formatter="rowIndex">#</th>
-                    <th data-class="text-center" data-field="id" data-visible="false" data-switchable="false">id</th>
-                    <th data-class="text-center" data-field="requestion_date"  data-title="请购日期" data-visible="false"></th>
+                    <th data-class="text-center" data-field="requestion_id" data-visible="false"
+                        data-switchable="false">id
+                    </th>
+                    <th data-class="text-center" data-field="requestion_date" data-title="请购日期"
+                        data-visible="false"></th>
                     <th data-class="text-center" data-field="expect_date" data-title="期望货期" data-visible="false"></th>
                     <th data-class="text-center" data-field="requestion_code" data-title="请购单号"></th>
                     <th data-class="text-center" data-field="product_name" data-title="物料名称、规格、型号"></th>
                     <th data-class="text-center" data-field="requestion_info" data-title="请购数量"></th>
-                    <th data-class="text-center" data-field="price" data-title="不含税价" data-editable="true" ></th>
+                    <th data-class="text-center" data-field="price" data-title="不含税价" data-editable="true"></th>
                     <th data-class="text-center" data-field="total_price" data-title="不含税总价" data-editable="true" ></th>
                     <th data-class="text-center" data-field="tax_price" data-title="含税价格" data-editable="true"></th>
-                    <th data-class="text-center" data-field="tax_total_price" data-title="含税总价" data-editable="true"></th>
+                    <th data-class="text-center" data-field="tax_total_price" data-title="含税总价"
+                        data-editable="true"></th>
                     <th data-class="text-center" data-field="godown_info" data-title="到货数量" data-visible="false"></th>
-                    <th data-class="text-center" data-field="is_test" data-title="是否试样" data-visible="false" data-formatter="chargeInfo"></th>
-                    <th data-class="text-center" data-field="is_reprocess" data-title="二次加工" data-visible="false" data-formatter="chargeInfo"></th>
+                    <th data-class="text-center" data-field="is_test" data-title="是否试样" data-visible="false"
+                        data-formatter="chargeInfo"></th>
+                    <th data-class="text-center" data-field="is_reprocess" data-title="二次加工" data-visible="false"
+                        data-formatter="chargeInfo"></th>
                     <!--<th class="text-center">期望货期</th>
                     <th class="text-center">品名、规格、型号</th>
                     <th class="text-center">请购</th>
@@ -203,14 +214,14 @@ function get_contact_details()
             document.getElementById("head_msg_info").innerHTML = "";
             g_supplier_id = row["id"];
             showDetails(row["id"], row["supplier_name"]);
-        }
+        },
+
     });
 
     //导出请购单后用此，标记处理
     function updateRequestion(status) {
 
-        if(g_supplier_id == 0)
-        {
+        if (g_supplier_id == 0) {
             noticeError("请先选择生成合同的供应商");
             return;
         }
@@ -265,11 +276,11 @@ function get_contact_details()
                 }
 
                 var readRow = $('#example').bootstrapTable('getRowByUniqueId', g_supplier_id);
-                readRow['number'] = Number(readRow['number'])-length;
+                readRow['number'] = Number(readRow['number']) - length;
 
                 console.log(readRow);
 
-                $('#example').bootstrapTable('updateByUniqueId', {id:g_supplier_id, row:readRow});
+                $('#example').bootstrapTable('updateByUniqueId', {id: g_supplier_id, row: readRow});
 
                 console.debug(msg);
                 //hideModal();
@@ -298,6 +309,19 @@ function get_contact_details()
         cache: false,
         dataType: "json",
         showRefresh: false,
+
+        onEditableSave: function (field, row, oldValue, $el) {
+            console.log(field, row, oldValue, $el);
+            if (true == isNaN(row[field])) {
+                row[field] = oldValue;
+                $el.val(oldValue);
+                console.log('update');
+                //$el.data('value', oldValue);
+                //$el.bootstrapTable('updateByUniqueId', {id: row.requestion_id, row: row});
+            }
+
+            return true;
+        },
     });
 
     $(window).resize(function () {
@@ -308,7 +332,6 @@ function get_contact_details()
     function rowIndex(value, row, index) {
         return index + 1;
     }
-
 
 
     function formatter_status(value, row, index) {
