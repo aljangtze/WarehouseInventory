@@ -98,24 +98,24 @@ $users = find_all('users');
         }
 
 
-        var spinner = new Spinner(opts);
-
+        //var spinner = new Spinner(opts);
         //document.getElementById("specification_loading").style.display = 'block';
         //ajax获取数据
         $.ajax({
             type: "GET",
             url: "get_specifications.php",//请求的后台地址
-            data: "product_name=" + product_name,//前台传给后台的参数
+            data: encodeURI("product_name=" + product_name),//前台传给后台的参数
             beforeSend: function () {
                 var target = $("#specification_loading").get(0);
-                spinner.spin(target);//显示loading图
+                //spinner.spin(target);//显示loading图
 
                 // document.getElementById("specification_loading").style.display = "none";
             },
             success: function (msg) {//msg:返回值
                 var jsonObj = JSON.parse(msg);
                 var result = jsonObj.result;
-                spinner.spin();
+
+                //spinner.spin();
                 //没找到相应的物料
                 if (result == 'undefined') {
                     //document.getElementById("product_input_specification").value = "/";
@@ -183,7 +183,7 @@ $users = find_all('users');
         $.ajax({
             type: "GET",
             url: "get_modelnumber.php",//请求的后台地址
-            data: "product_name=" + product_name + "&specification=" + product_specification,//前台传给后台的参数,
+            data: "product_name=" + encodeURI(product_name) + "&specification=" + encodeURI(product_specification),//前台传给后台的参数,
             beforeSend: function () {
                 var target = $("#modelnumber_loading").get(0);
                 spinner.spin(target);//显示loading图
