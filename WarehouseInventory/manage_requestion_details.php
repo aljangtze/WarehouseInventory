@@ -389,7 +389,7 @@ $requestions = get_requestion_by_operator($user_id, 0);
         return;
     }
 
-    function generateXls(code, jsonData, )
+    function generateXls(code, jsonData)
     {
         var jsonHeader = [[
                 "请  购  单"

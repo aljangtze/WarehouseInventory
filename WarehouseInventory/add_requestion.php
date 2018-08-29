@@ -449,7 +449,7 @@ $users = find_all('users');
 
         g_reqeustionData.items[jsonData['tr_id']] = jsonData;
 
-        document.getElementById("product_name_info").value = "";
+        //document.getElementById("product_name_info").value = "";
 
         document.getElementById("product_input_modelnumber").value = "";
         document.getElementById("product_input_modelnumber_list").innerHTML = "";
