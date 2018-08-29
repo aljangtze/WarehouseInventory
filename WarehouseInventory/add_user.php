@@ -44,26 +44,26 @@
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Add New User</span>
+          <span>新用户</span>
        </strong>
       </div>
       <div class="panel-body">
         <div class="col-md-6">
           <form method="post" action="add_user.php">
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">全名</label>
                 <input type="text" class="form-control" name="full-name" placeholder="Full Name">
             </div>
             <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="Username">
+                <label for="username">登录名</label>
+                <input type="text" class="form-control" name="username" placeholder="Login name">
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">密码</label>
                 <input type="password" class="form-control" name ="password"  placeholder="Password">
             </div>
             <div class="form-group">
-              <label for="level">User Role</label>
+              <label for="level">用户角色</label>
                 <select class="form-control" name="level">
                   <?php foreach ($groups as $group ):?>
                    <option value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
@@ -71,7 +71,7 @@
                 </select>
             </div>
             <div class="form-group clearfix">
-              <button type="submit" name="add_user" class="btn btn-primary">Add User</button>
+              <button type="submit" name="add_user" class="btn btn-primary">添加用户</button>
             </div>
         </form>
         </div>

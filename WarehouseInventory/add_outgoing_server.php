@@ -3,7 +3,8 @@ $page_title = '入库信息';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
-$rk_code_info = getGoDownCode();
+$ck_code_info = getOutgoingCode();
+
 ?>
 
 
@@ -32,8 +33,6 @@ $rk_code_info = getGoDownCode();
         $('#data_supplier_name').text(supplierName);
 
         g_GodownEntryData['supplier_name'] = supplierName;
-
-
     }
 
     //修改请购单号
@@ -42,7 +41,6 @@ $rk_code_info = getGoDownCode();
 
         product_name = '';
         $("#product_name_info_list").html("");
-        $("#product_number_info").val("物料数量:（请购:0,已入库:0）");
 
         var docList = document.getElementById("product_requestion_code_list");
 
@@ -131,14 +129,9 @@ $rk_code_info = getGoDownCode();
                         }
 
                         if (isFirst)
-                        {
-                            retXml += "<option data-requestion-number=\"" + item['requestion_number'] + "\"data-godown-number=\"" + item['godown_number'] + "\" selected=\"selected\" data-id=\"" + item['id'] + "\" data-project-name=\"" + item['project_name'] + "\" data-unit=\"" + item['unit'] + "\" value=\"" + data_product_info + "\" data-product-name=\"" + item["product_name"] + "\" data-spc-model=\"" + data_product_spc_model + "\">" + data_product_info + " </option>";
-
-                            //$("#product_number_info").text("物料数量:（请购:" + item['requestion_number'] +  ",已入库:" +  item['godown_number']  + "）");
-                            isFirst=false;
-                        }
+                            retXml += "<option selected=\"selected\" data-id=\"" + item['id'] + "\" data-project-name=\"" + item['project_name'] + "\" data-unit=\"" + item['unit'] + "\" value=\"" + data_product_info + "\" data-product-name=\"" + item["product_name"] + "\" data-spc-model=\"" + data_product_spc_model + "\">" + data_product_info + " </option>";
                         else
-                            retXml += "<option data-requestion-number=\"" + item['requestion_number'] + "\"data-godown-number=\"" + item['godown_number'] + "\" data-id=\"" + item['id'] + "\" data-project-name=\"" + item['project_name'] + "\" data-unit=\"" + item['unit'] + "\" value=\"" + data_product_info + "\" data-product-name=\"" + item["product_name"] + "\" data-spc-model=\"" + data_product_spc_model + "\">" + data_product_info + "</option>";
+                            retXml += "<option data-id=\"" + item['id'] + "\" data-project-name=\"" + item['project_name'] + "\" data-unit=\"" + item['unit'] + "\" value=\"" + data_product_info + "\" data-product-name=\"" + item["product_name"] + "\" data-spc-model=\"" + data_product_spc_model + "\">" + data_product_info + "</option>";
 
                     }
                     //alert(retXml);
@@ -177,10 +170,7 @@ $rk_code_info = getGoDownCode();
                 product_sec_model = option.attributes['data-spc-model'].value;
                 product_unit = option.attributes['data-unit'].value;
                 requestion_project = option.attributes['data-project-name'].value;
-                var requestion_number = option.attributes['data-requestion-number'].value;
-                var godown_number = option.attributes['data-godown-number'].value;
 
-                $("#product_number_info").text("物料数量:（请购:" + requestion_number +  ",已入库:" +  godown_number  + "）");
                 //console.log(requeston_detail_id);
                 //console.log(product_name);
                 //console.log(product_sec_model);
@@ -211,32 +201,30 @@ $rk_code_info = getGoDownCode();
             return;
         }
 
-        /*
-                var price = Number($("#data_price").val());
-                if (isNaN(price)) {
-                    noticeError("添加入库信息失败: 单价必须为数字，没有请填0，请修改相应数据后重新添加！");
-                  return;
-                }
+        var price = Number($("#data_price").val());
+        if (isNaN(price)) {
+            noticeError("添加入库信息失败: 单价必须为大于0的数字，,请修改相应数据后重新添加！");
+            return;
+        }
 
-                /*
-                if (price <= 0) {
-                    noticeWarning("注意: 单价填写的小于等于0的数字，请确定是否正确！");
-                }
+        if (price <= 0) {
+            noticeWarning("注意: 单价填写的小于等于0的数字，请确定是否正确！");
+        }
 
-                var totalPrice = Number($("#data_total_price").val());
-                if (isNaN(totalPrice)) {
-                    noticeError("添加入库信息失败: 总价必须为大于0的数字，,请修改相应数据后重新添加！");
-                    return;
-                }
+        var totalPrice = Number($("#data_total_price").val());
+        if (isNaN(totalPrice)) {
+            noticeError("添加入库信息失败: 总价必须为大于0的数字，,请修改相应数据后重新添加！");
+            return;
+        }
 
-                if (totalPrice <= 0) {
-                    noticeWarning("注意: 总价填写的小于等于0的数字，请确定是否正确！");
-                }
+        if (totalPrice <= 0) {
+            noticeWarning("注意: 总价填写的小于等于0的数字，请确定是否正确！");
+        }
 
-                if (price * product_number != totalPrice) {
-                    noticeError("添加入库信息失败: 总价 != 单价*数量，,请修改相应数据后重新添加！");
-                    return;
-                }*/
+        if (price * product_number != totalPrice) {
+            noticeError("添加入库信息失败: 总价 != 单价*数量，,请修改相应数据后重新添加！");
+            return;
+        }
 
 
         //console.log(g_GodownEntryData);
@@ -280,8 +268,8 @@ $rk_code_info = getGoDownCode();
         jsonData['id'] = tr.id;
         jsonData['requestion_details_id'] = requeston_detail_id;
         jsonData['godown_number'] = product_number;
-        jsonData['price'] = 0;
-        jsonData['total_price'] = 0;
+        jsonData['price'] = price;
+        jsonData['total_price'] = totalPrice;
         jsonData['memo'] = $("#data_memo").val();
         g_GodownEntryData.items[jsonData['id']] = jsonData;
 
@@ -434,7 +422,7 @@ getRequestionCode();
 $products = find_product('product');
 $qualification = find_all('supplier');
 
-$requestion = get_godown_entrys();
+$requestion = get_all_requestion();
 
 $projects = find_all('project');
 $units = find_all('units');
@@ -479,13 +467,12 @@ $users = find_all('users');
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>内部请购单号:</label>
+                                <label>请购单号:</label>
                                 <div class="input-group col-md-12">
                                     <input type="text" id="product_requestion_code" class="form-control"
-                                           list="product_requestion_code_list" placeholder="选择或输入内部请购单号"
+                                           list="product_requestion_code_list" placeholder="选择或输入请购单号"
                                            onchange="onRequestionChange()">
                                     <datalist class="form-control col-md-12" id="product_requestion_code_list"
                                               style="display:none;">
@@ -561,7 +548,7 @@ $users = find_all('users');
 
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label for="qty" id="product_number_info">物料数量:（请购:0,已入库:0）</label>
+                                <label for="qty">物料数量:（Want:10,Godown:0）</label>
                                 <div class="input-group col-md-12">
                                     <input type="text" class="form-control" id="data_product_number" value="1">
                                     <span class="input-group-addon">
@@ -570,12 +557,12 @@ $users = find_all('users');
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group col-md-2">
 
-                        <div class="form-group col-md-2 collapse">
                             <div>
                                 <label>单价：</label>
                             </div>
-                            <div class="input-group col-md-12 collapse">
+                            <div class="input-group col-md-12">
                                 <span class="input-group-addon" onclick="money_click()">
                                         <div id="flag_price">￥</div>
                                     </span>
@@ -583,11 +570,11 @@ $users = find_all('users');
                                        onchange="document.getElementById('head_msg_info').innerHTML = '';" value="0.00">
                             </div>
                         </div>
-                        <div class="form-group col-md-2 collapse">
+                        <div class="form-group col-md-2">
                             <div>
                                 <label>总价：</label>
                             </div>
-                            <div class="input-group col-md-12 collapse">
+                            <div class="input-group col-md-12">
                                 <span class="input-group-addon" onclick="money_click()">
                                         <div id="flag_total_price">￥</div>
                                     </span>
@@ -638,7 +625,7 @@ $users = find_all('users');
                     <td class="text-left" colspan="4" id="data_company_name">四川蓝光英诺生物科技股份有限公司</td>
                     <td class="text-right" colspan="3"
                     <b>入库单号:</b></td>
-                    <td class="text-center" colspan="2" id="data_godown_code"><?php echo $rk_code_info['code']; ?></td>
+                    <td class="text-center" colspan="2" id="data_godown_code"><?php echo $ck_code_info['code']; ?></td>
 
                 </tr>
                 <tr>

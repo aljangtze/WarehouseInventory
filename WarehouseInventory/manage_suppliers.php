@@ -4,12 +4,11 @@ require_once('includes/load.php');
 
 page_require_level(2);
 
-function get_product_details()
+function get_supplier_details()
 {
     global $db;
-    $sql = "select a.*, u.name as user_name, t.name as product_type from product as a 
-            left join users as u on a.id=u.id
-            left join product_type as t on a.type=t.id;";
+    $sql = "select s.*,u.name as user_name from supplier as s
+            left join users as u on s.initiator=u.id";
 
     $result = $db->query($sql);
     $result_set = $db->while_loop($result);
@@ -25,13 +24,11 @@ function get_product_details()
 }
 
 $product_types = find_all('product_type');
-
 $units = find_all('units');
 ?>
 
 <script type="text/javascript">
 
-    console.log('start');
     function isEmpty(a) {
         if (a == "" || a == null || a == undefined) {
             return true;
@@ -53,12 +50,9 @@ $units = find_all('units');
     }
 
 
-    var ds = '<?php $user_id = $_SESSION['user_id']; $requestion_infos = get_product_details(); echo str_replace('"', '"', json_encode($requestion_infos)); ?>';
-    console.log('stop');
-
+    var g_supplier_id = 0;
+    var ds = '<?php $user_id = $_SESSION['user_id']; $requestion_infos = get_supplier_details(); echo str_replace('"', '"', json_encode($requestion_infos)); ?>';
     var requestion_data = JSON.parse(ds);
-
-    console.log(requestion_data);
 
     //详细信息
     var g_reqeustionData = {};
@@ -83,7 +77,7 @@ $units = find_all('units');
 
     }
 
-    function  deleteProduct(id) {
+    function  deleteSupplier(id) {
         var data={};
         data['operate_type'] = 'del';
         var item = {};
@@ -91,19 +85,16 @@ $units = find_all('units');
         data['data'] = item;
 
         console.log(data);
-
-
-
         $.ajax({
             type: "POST",
-            url: "manage_products_server.php",//请求的后台地址
+            url: "manage_suppliers_server.php",//请求的后台地址
             data: data,
             success: function (msg) {//msg:返回值
                 var jsonObj = JSON.parse(msg);
                 var result = jsonObj.result;
 
                 if (result != 'success') {
-                    noticeError("删除物料信息失败！");
+                    noticeError("删除供应商信息失败！");
                     return;
                 }
 
@@ -126,24 +117,10 @@ $units = find_all('units');
 
         var product_name =  $("#product_name").val();
         console.log(product_name);
-        var product_specification = $("#product_specification").val();
-        var product_model_number = $("#product_modelnumber").val();
-        var product_unit = $("#product_unit").find("option:selected").text();
-        var product_type = $("#product_type").find("option:selected").val();
 
         if (isEmpty(product_name)) {
-            noticeError("添加物料信息的名称不能为空");
+            noticeError("添加供应商名称名称不能为空");
             return;
-        }
-
-        if(isEmpty(product_specification))
-        {
-            product_specification = '/';
-        }
-
-        if(isEmpty(product_model_number))
-        {
-            product_model_number = '/';
         }
 
 
@@ -151,25 +128,20 @@ $units = find_all('units');
         data['operate_type'] = 'add';
         var item = {};
         item['name'] = product_name;
-        item['specification'] = product_specification;
-        item['model_number'] =product_model_number;
-        item['unit'] = product_unit;
-        item['product_type'] =  $("#product_type").find("option:selected").text();
-        item['type'] = $("#product_type").find("option:selected").val();
 
         data['data'] = item;
         console.log(data);
 
         $.ajax({
             type: "POST",
-            url: "manage_products_server.php",//请求的后台地址
+            url: "manage_suppliers_server.php",//请求的后台地址
             data: data,
             success: function (msg) {//msg:返回值
                 var jsonObj = JSON.parse(msg);
                 var result = jsonObj.result;
 
                 if (result != 'success') {
-                    noticeError("添加物料信息失败！物料已经存在");
+                    noticeError("添加供应商信息失败！供应商已经存在");
                     return;
                 }
 
@@ -200,27 +172,20 @@ $units = find_all('units');
                 <div id="toolbar1">
                     <strong>
                         <span class="glyphicon glyphicon-pencil"></span>
-                        <span>物料信息列表</span>
+                        <span>供应商信息列表</span>
                     </strong>
                 </div>
                 <table id="example" class="table table-bordered table-hover" data-height="750" align="center"
                        data-unique-id="id"
                        data-toolbar="#toolbar1"
-                       data-show-multi-sort="true"
-                       data-sort-priority='[{"sortName": "name", "sortOrder":"asc"},{"sortName": "specification", "sortOrder":"asc"},{"sortName": "model_number", "sortOrder":"asc"}]'>
+                       >
                     <thead>
                     <tr>
                         <th class="text-center" data-visible="true" data-formatter="rowIndex">#</th>
-                        <th class="text-center" data-sortable="true" data-switchable="false" data-visible="true"
-                            data-field="name" data-editable="true">名称
-                        </th>
-                        <th class="text-center" data-sortable="true" data-field="specification" data-editable="true">规格</th>
-                        <th class="text-center" data-sortable="true" data-field="model_number" data-editable="true">型号</th>
-                        <th class="text-center" data-sortable="true" data-field="unit">单位</th>
+                        <th class="text-center" data-visible="false" data-field="id" >id</th>
+                        <th class="text-center" data-sortable="true" data-visible="true" data-field="name" data-editable="true">名称</th>
                         <th class="text-center" data-sortable="true" data-field="user_name">创建人</th>
-                        <th class="text-center" data-sortable="true" data-field="product_type">物料类型</th>
-                        <th class="text-center" data-field="id" data-formatter="formatter_operator" data-visible="true">操作</th>
-                        <th class="text-center" data-sortable="true" data-formatter="formatter_favorite" data-visible="false">收藏</th>
+                        <th class="text-center" data-formatter="formatter_operator" data-visible="true">操作</th>
                     </tr>
                     </thead>
                     <tbody class="text-center">
@@ -237,35 +202,11 @@ $units = find_all('units');
         <div class="panel-body">
             <div class="panel panel-default">
                 <div class="text-center">
-                    <h3>添加新的物料</h3>
+                    <h3>添加新的供应商</h3>
                 </div>
                 <div class="form-group" style="width:80%;margin-left:10%;">
                     <label for="name" class="control-label">名称</label>
                     <input type="name" class="form-control" id="product_name" placeholder="请输入名称">
-                </div>
-                <div class="form-group" style="width:80%;margin-left:10%;">
-                    <label for="level" class="control-label">规格</label>
-                    <input type="info" class="form-control" id="product_specification" placeholder="请输入规格，不输入将默认填充'/'">
-                </div>
-                <div class="form-group" style="width:80%;margin-left:10%;">
-                    <label for="level" class="control-label">型号</label>
-                    <input type="info" class="form-control" id="product_modelnumber" placeholder="请输入型号，不输入将默认填充'/'">
-                </div>
-                <div class="form-group" style="width:80%;margin-left:10%;">
-                    <label for="level" class="control-label">单位</label>
-                    <select type="info" class="form-control" id="product_unit">
-                        <?php foreach ($units as $cat): ?>
-                            <option
-                            value="<?php echo (int)$cat['id'] ?>"><?php echo $cat['name'] ?></option><?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="form-group" style="width:80%;margin-left:10%;">
-                    <label for="level" class="control-label">类型</label>
-                    <select type="info" class="form-control" id="product_type">
-                        <?php foreach ($product_types as $cat): ?>
-                            <option
-                            value="<?php echo (int)$cat['id'] ?>"><?php echo $cat['name'] ?></option><?php endforeach; ?>
-                    </select>
                 </div>
                 <div class="form-group clearfix" align="center">
                     <button type="button" id="btn_add" class="btn btn-info " onclick="add()" style="align:center;width:200px;height:40px;margin-left:20px;margin-right: 20px;">添加</button>
@@ -279,11 +220,11 @@ $units = find_all('units');
     $('#example').bootstrapTable({
         pagination: true,
         pageSize: 15,
-        checkboxHeader: true,
-        clickToSelect: true,
+        checkboxHeader: false,
+        clickToSelect: false,
         search: true,
-        showColumns: true,
-        showRefresh: true,
+        showColumns: false,
+        showRefresh: false,
         data: requestion_data,
         pageList: [15, 20, 50, 100],
 
@@ -304,7 +245,7 @@ $units = find_all('units');
         <a style="height:20px;" onclick="updateDetails(' + id + ')" class="btn btn-xs btn-info" data-toggle="tooltip" title="Edit">\
         <i class="glyphicon glyphicon-ok"></i>\
         </a>\
-        <a style="height:20px;" onclick="deleteProduct(' +  id + ')" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">\
+        <a style="height:20px;" onclick="deleteSupplier(' +  id + ')" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">\
         <i class="glyphicon glyphicon-remove"></i>\
         </a>\
         </div>';

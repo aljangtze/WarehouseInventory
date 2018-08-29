@@ -42,15 +42,6 @@
 
     <li>
         <a href="#" class="submenu-toggle">
-            <i class="glyphicon glyphicon-user"></i>
-            <span>报销管理</span>
-        </a>
-        <ul class="nav submenu">
-            <li><a href="group.php">新增报销</a></li>
-        </ul>
-    </li>
-    <li>
-        <a href="#" class="submenu-toggle">
             <i class="glyphicon glyphicon-save"></i>
             <span>入库管理</span>
         </a>
@@ -67,69 +58,33 @@
             <span>出库管理</span>
         </a>
         <ul class="nav submenu">
-            <li><a href="group.php">新增出库</a></li>
+            <li><a href="add_outgoing.php">新增出库</a></li>
         </ul>
         <ul class="nav submenu">
-            <li><a href="group.php">出库单明细</a></li>
+            <li><a href="manage_outgoing_entrys.php">出库单明细</a></li>
         </ul>
     </li>
     <li>
-        <a href="categorie.php">
+        <a href="manage_products.php">
             <i class="glyphicon glyphicon-indent-left"></i>
             <span>物料信息管理</span>
         </a>
     </li>
     <li>
-        <a href="#" class="submenu-toggle">
-            <i class="glyphicon glyphicon-signal"></i>
-            <span>库存报告</span>
+        <a href="manage_suppliers.php" class="submenu-toggle">
+            <i class="glyphicon glyphicon-phone-alt"></i>
+            <span>供应商管理</span>
         </a>
-        <ul class="nav submenu">
-            <li><a href="sales_report.php">Sales by dates </a></li>
-            <li><a href="monthly_sales.php">Monthly sales</a></li>
-            <li><a href="daily_sales.php">Daily sales</a></li>
-        </ul>
+
     </li>
     <li>
         <a href="#" class="submenu-toggle">
-            <i class="glyphicon glyphicon-signal"></i>
+            <i class="glyphicon glyphicon-lock"></i>
             <span>角色权限管理</span>
         </a>
         <ul class="nav submenu">
             <li><a href="role.php">角色管理</a></li>
             <li><a href="rule.php">权限管理</a></li>
-        </ul>
-    </li>
-    <li>
-        <a href="categorie.php">
-            <i class="glyphicon glyphicon-indent-left"></i>
-            <span>Categories</span>
-        </a>
-    </li>
-    <li>
-        <a href="#" class="submenu-toggle">
-            <i class="glyphicon glyphicon-th-large"></i>
-            <span>Products</span>
-        </a>
-        <ul class="nav submenu">
-            <li><a href="product.php">Manage products</a></li>
-            <li><a href="add_product.php">Add product</a></li>
-        </ul>
-    </li>
-    <li>
-        <a href="media.php">
-            <i class="glyphicon glyphicon-picture"></i>
-            <span>Meadias</span>
-        </a>
-    </li>
-    <li>
-        <a href="#" class="submenu-toggle">
-            <i class="glyphicon glyphicon-th-list"></i>
-            <span>Sales</span>
-        </a>
-        <ul class="nav submenu">
-            <li><a href="sales.php">Manage Sales</a></li>
-            <li><a href="add_sale.php">Add Sale</a></li>
         </ul>
     </li>
     <li>

@@ -469,6 +469,18 @@ function getGoDownCode()
         return null;
 }
 
+function getOutgoingCode()
+{
+    global $db;
+    $sql = $db->query("SELECT year(now()) as year, month(now()) as month, 
+              day(now()) as day, number+1 as number, concat('CK', year(now()), LPAD(month(now()),2,'0'), LPAd(day(now()), 2, '0') , LPAd(number+1, 4, '0')) as code FROM outgoing_entry_code 
+              where year=year(now()) order by year,number desc limit 1");
+    if ($result = $db->fetch_assoc($sql))
+        return $result;
+    else
+        return null;
+}
+
 
 function find_product()
 {
@@ -554,6 +566,20 @@ function get_all_requestion()
     $sql = "select a.*, ifnull(b.name, '')  as  initiator_name,ifnull(c.name, '') as operator_name from requestion as a 
             left join users as b on a.initiator=b.id 
             left join users as c on a.operator=c.id 
+            order by date";
+    $result = $db->query($sql);
+    $result_set = $db->while_loop($result);
+    return $result_set;
+}
+
+function get_godown_entrys()
+{
+    global $db;
+
+    $sql = "select  distinct a.*, ifnull(b.name, '')  as  initiator_name,ifnull(c.name, '') as operator_name from requestion as a 
+            left join users as b on a.initiator=b.id 
+            left join users as c on a.operator=c.id 
+            left join requestion_details as rd on rd.requestion_id=a.id where rd.requestion_number > rd.godown_number
             order by date";
     $result = $db->query($sql);
     $result_set = $db->while_loop($result);
@@ -719,7 +745,7 @@ function get_requestion_details_by_code($requestion_code)
 {
     global $db;
     $sql = "select a.id, f.code as requestion_code, a.requestion_id, Date(a.requestion_date) as requestion_date, '分组' as usergroup, a.code, '请购人' as username, c.name project_name, b.specification, 
-                b.model_number,  a.requestion_number, b.unit, a.reference, b.name  as product_name, d.name as product_type_name, Date(a.expect_date) as expect_date, e.qualification_info,
+                b.model_number,  a.requestion_number, a.godown_number, b.unit, a.reference, b.name  as product_name, d.name as product_type_name, Date(a.expect_date) as expect_date, e.qualification_info,
                 case a.is_test when 1 then '是'  else '否' end as is_test, case a.is_reprocess when 1 then '是'  else '否' end as is_reprocess, a.memo
                  from requestion_details as a 
                 left join product as b on a.product_id=b.id 
@@ -727,7 +753,7 @@ function get_requestion_details_by_code($requestion_code)
                 left join product_type as d on b.type=d.id
                 left join qualification as e on a.qualification_id=e.id 
                 left join requestion as f on a.requestion_id=f.id
-                where f.code = '{$db->escape($requestion_code)}' order by a.requestion_id,a.id ";
+                where f.code = '{$db->escape($requestion_code)}' and a.requestion_number>a.godown_number order by a.requestion_id,a.id ";
 
     $result = $db->query($sql);
     $result_set = $db->while_loop($result);

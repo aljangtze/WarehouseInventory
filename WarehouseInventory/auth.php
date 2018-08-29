@@ -13,7 +13,7 @@ if(empty($errors)){
     //Update Sign in time
      updateLastLogIn($user_id);
         $session->msg("s", "欢迎使用 Revotek-Inventory 系统");
-     redirect('home.php',false);
+     redirect('admin.php',false);
 
   } else {
     $session->msg("d", "抱歉,用户名或密码错误.");

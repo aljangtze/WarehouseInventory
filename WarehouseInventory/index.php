@@ -2,7 +2,7 @@
   ob_start();
   require_once('includes/load.php');
   if($session->isUserLoggedIn(true)) 
-  { redirect('home.php', false);}
+  { redirect('admin.php', false);}
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="login-page">

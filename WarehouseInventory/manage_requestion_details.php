@@ -172,11 +172,13 @@ $requestions = get_requestion_by_operator($user_id, 0);
                     <tr>
                         <th class="text-center" data-checkbox="true">#</th>
                         <th class="text-center" data-visible="true" data-formatter="rowIndex">#</th>
-                        <th class="text-center" data-switchable="false" data-visible="false" data-field="id" >id</th>
+                        <th class="text-center" data-switchable="false" data-visible="false" data-field="id">id</th>
                         <th class="text-center" data-switchable="false" data-field="date" data-sortable="true">创建日期</th>
                         <th class="text-center" data-field="code" data-sortable="true">请购单号</th>
                         <th class="text-center" data-field="initiator_name" data-sortable="true">请购人</th>
-                        <th class="text-center" data-field="status" data-formatter="formatter_status" data-sortable="true">状态</th>
+                        <th class="text-center" data-field="status" data-formatter="formatter_status"
+                            data-sortable="true">状态
+                        </th>
                     </tr>
                     </thead>
                     <tbody id="requestion_list" class="text-center">
@@ -272,6 +274,76 @@ $requestions = get_requestion_by_operator($user_id, 0);
 
     function exportExls() {
 
+        var selectedRows = $('#example').bootstrapTable('getSelections');
+
+        var items = {};
+        //更新后台状态，然后更新前台状态
+        for (var i = 0; i < selectedRows.length; i++) {
+            curRow = selectedRows[i];
+            items[i] = curRow.id;
+        }
+
+        var sendData = {};
+        sendData['operate_id'] = '1';
+        sendData['data'] = items;
+
+        $.ajax({
+            type: "POST",
+            url: "manage_requestion_details_server.php",//请求的后台地址
+            data: sendData,//前台传给后台的参数
+            success: function (msg) {//msg:返回值
+                var jsonObj = JSON.parse(msg);
+                var result = jsonObj.result;
+
+                if (result != 'success') {
+                    noticeError("获取物料详细信息失败");
+                    return;
+                }
+
+                var items = jsonObj.items;
+                var returnInnerXml = "";
+
+                var data = jsonObj.data;
+
+                var requestion_id = 0;
+
+                //data = [{'id':'1', 'name':'info'},{'id':'1', 'name':'info'}];
+                var jsonData = new Array();
+                var index = 1;
+                for (var i = 0; i < data.length; i++) {
+                    var item = data[i];
+                    var cur_requestion_id = Number(item['requestion_id']);
+                    jsonData.append([
+                        index++,
+                        item["requestion_code"],
+                        item["requestion_date"],
+                        item["code"],
+                        item["user_name"],
+                        null,
+                        "丁腈手套（S）",
+                        "100双/盒",
+                        "盒",
+                        "2",
+                        null,
+                        null,
+                        "一周"
+                    ]);
+
+                    if(requestion_id > 0 && requestion_id != cur_requestion_id) {
+                        //generateXls(item['code'], jsonData)
+                        jsonData.splice(0, jsonData.length);
+                        index = 1;
+                    }
+                    index ++;
+                }
+
+                console.log(data);
+            },
+            error: function (request) {
+                alert('error');
+            }
+        });
+
         var workBook = XLSX.utils.book_new();
 
         console.log(workBook);
@@ -317,6 +389,57 @@ $requestions = get_requestion_by_operator($user_id, 0);
         return;
     }
 
+    function generateXls(code, jsonData, )
+    {
+        var jsonHeader = [[
+                "请  购  单"
+            ],
+            [
+                "请购单号",
+                code,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "制单人",
+                null,
+                null,
+                "王梅佳"
+            ],
+            [
+                "请购明细"
+            ],
+            [
+                "序号",
+                "请购单号",
+                "请购日期",
+                "物料代码",
+                "请购人",
+                "项目",
+                "品名",
+                "品牌/规格",
+                "单位",
+                "数量",
+                "参考资源",
+                "货号",
+                "期望货期",
+                "物料类别",
+                "资质要求",
+                "是否试样",
+                "是否需要二次加工",
+                "备注"
+            ]];
+
+        var filePath = code +".xlsx";
+
+        var ws1 = XLSX.utils.json_to_sheet(jsonData);
+        XLSX.utils.book_append_sheet(workbook, ws1, "Presidents");
+
+        XLSX.writeFile(workbook, filePath)
+
+    }
+
     function s2ab(s) {
         if (typeof ArrayBuffer !== 'undefined') {
             var buf = new ArrayBuffer(s.length);
@@ -360,7 +483,7 @@ $requestions = get_requestion_by_operator($user_id, 0);
             length++;
         }
 
-        if(length<=0)
+        if (length <= 0)
             return;
 
         sendData['data'] = items;
@@ -386,7 +509,7 @@ $requestions = get_requestion_by_operator($user_id, 0);
                 //hideModal();
             },
             error: function (request) {
-               // hideModal();
+                // hideModal();
                 alert('error');
                 console.log(request);
             }

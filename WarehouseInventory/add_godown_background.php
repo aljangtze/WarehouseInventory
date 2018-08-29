@@ -46,7 +46,6 @@ if (isset($_GET['requestion_code'])) {
 
 function addGodownEntry($data)
 {
-
     global $db;
     global $retData;
     $user_id = $_SESSION['user_id'];

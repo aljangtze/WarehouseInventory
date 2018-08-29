@@ -181,19 +181,19 @@
 
     $.extend($.fn.bootstrapTable.locales, {
         formatMultipleSort: function() {
-            return 'Multiple Sort';
+            return '多列排序';
         },
         formatAddLevel: function() {
-            return 'Add Level';
+            return '增加列';
         },
         formatDeleteLevel: function() {
-            return 'Delete Level';
+            return '删除列';
         },
         formatColumn: function() {
-            return 'Column';
+            return '列名称';
         },
         formatOrder: function() {
-            return 'Order';
+            return '排序方式';
         },
         formatSortBy: function() {
             return 'Sort by';
@@ -202,10 +202,10 @@
             return 'Then by';
         },
         formatSort: function() {
-            return 'Sort';
+            return '排序';
         },
         formatCancel: function() {
-            return 'Cancel';
+            return '取消';
         },
         formatDuplicateAlertTitle: function() {
             return 'Duplicate(s) detected!';
