@@ -16,7 +16,7 @@
         </ul>
     </li>
     <li>
-        <a href="#" class="submenu-toggle">
+        <a href="#" class="submenu-toggle" >
             <i class="glyphicon glyphicon-shopping-cart"></i>
             <span>请购单管理</span>
         </a>

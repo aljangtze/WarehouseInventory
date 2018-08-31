@@ -143,7 +143,6 @@ $requestions = get_requestion_by_operator($user_id, 0);
         window.open("get_requestion_details.php?requestion_id=" + g_requestion_id);
     }
 </script>
-
 <div class="row">
     <div class="col-md-12" id="head_msg_info">
         <?php echo display_msg($msg); ?>
@@ -237,7 +236,6 @@ $requestions = get_requestion_by_operator($user_id, 0);
                 </thead>
                 <tbody id="product_details" class="text-center">
                 </tbody>
-                </tbody>
             </table>
         </div>
     </div>
@@ -284,7 +282,7 @@ $requestions = get_requestion_by_operator($user_id, 0);
         }
 
         var sendData = {};
-        sendData['operate_id'] = '1';
+        sendData['operate_id'] = 1;
         sendData['data'] = items;
 
         $.ajax({
@@ -300,50 +298,90 @@ $requestions = get_requestion_by_operator($user_id, 0);
                     return;
                 }
 
-                var items = jsonObj.items;
-                var returnInnerXml = "";
 
                 var data = jsonObj.data;
 
                 var requestion_id = 0;
 
+                var requestion_code = "";
                 //data = [{'id':'1', 'name':'info'},{'id':'1', 'name':'info'}];
                 var jsonData = new Array();
                 var index = 1;
                 for (var i = 0; i < data.length; i++) {
+
                     var item = data[i];
                     var cur_requestion_id = Number(item['requestion_id']);
-                    jsonData.append([
-                        index++,
-                        item["requestion_code"],
-                        item["requestion_date"],
-                        item["code"],
-                        item["user_name"],
-                        null,
-                        "丁腈手套（S）",
-                        "100双/盒",
-                        "盒",
-                        "2",
-                        null,
-                        null,
-                        "一周"
-                    ]);
 
-                    if(requestion_id > 0 && requestion_id != cur_requestion_id) {
-                        //generateXls(item['code'], jsonData)
-                        jsonData.splice(0, jsonData.length);
+                    var isTest = item["is_test"] == "1" ? '是' : '否';
+                    var isReprocess = item["is_reprocess"] == "1" ? '是' : '否';
+
+                    if (requestion_id > 0 && requestion_id != cur_requestion_id) {
+                        generateXls(requestion_code, jsonData)
+                        jsonData = new Array();
+
                         index = 1;
+                        var curData = [[
+                            index++,
+                            item["requestion_code"],
+                            item["requestion_date"],
+                            item["code"],
+                            item["user_name"],
+                            item["project_name"],
+                            item["name"],
+                            item["specification"],
+                            item["model_number"],
+                            item["unit"],
+                            item["requestion_number"],
+                            item["reference"],
+                            item["expect_date"],
+                            item["product_type_name"],
+                            item["qualification_info"],
+                            isTest,
+                            isReprocess,
+                            item['memo']]];
+                        jsonData = jsonData.concat(curData);
+                        requestion_code = item['requestion_code'];
+                        requestion_id = cur_requestion_id;
+
                     }
-                    index ++;
+                    else {
+                        if(requestion_id==0)
+                        {
+                            requestion_id = cur_requestion_id;
+                        }
+                        var curData = [[
+                            index++,
+                            item["requestion_code"],
+                            item["requestion_date"],
+                            item["code"],
+                            item["user_name"],
+                            item["project_name"],
+                            item["name"],
+                            item["specification"],
+                            item["model_number"],
+                            item["unit"],
+                            item["requestion_number"],
+                            item["reference"],
+                            item["expect_date"],
+                            item["product_type_name"],
+                            item["qualification_info"],
+                            isTest,
+                            isReprocess,
+                            item['memo']]];
+                        jsonData = jsonData.concat(curData);
+                        requestion_code = item['requestion_code'];
+                    }
                 }
 
-                console.log(data);
+                console.log('jsonData', jsonData);
+                generateXls(requestion_code, jsonData)
             },
             error: function (request) {
                 alert('error');
-            }
+            },
         });
 
+        return;
         var workBook = XLSX.utils.book_new();
 
         console.log(workBook);
@@ -389,11 +427,11 @@ $requestions = get_requestion_by_operator($user_id, 0);
         return;
     }
 
-    function generateXls(code, jsonData)
-    {
+    function generateXls(code, jsonData) {
+        console.log("generateXLS success", code, jsonData);
         var jsonHeader = [[
-                "请  购  单"
-            ],
+            "请  购  单"
+        ],
             [
                 "请购单号",
                 code,
@@ -405,7 +443,7 @@ $requestions = get_requestion_by_operator($user_id, 0);
                 "制单人",
                 null,
                 null,
-                "王梅佳"
+                "xxx"
             ],
             [
                 "请购明细"
@@ -418,11 +456,11 @@ $requestions = get_requestion_by_operator($user_id, 0);
                 "请购人",
                 "项目",
                 "品名",
-                "品牌/规格",
+                "品牌",
+                "型号",
                 "单位",
                 "数量",
                 "参考资源",
-                "货号",
                 "期望货期",
                 "物料类别",
                 "资质要求",
@@ -431,12 +469,21 @@ $requestions = get_requestion_by_operator($user_id, 0);
                 "备注"
             ]];
 
-        var filePath = code +".xlsx";
+        jsonHeader = jsonHeader.concat(jsonData);
 
-        var ws1 = XLSX.utils.json_to_sheet(jsonData);
+        var filePath = code + ".xlsx";
+
+        var workbook = XLSX.utils.book_new();
+        var ws1 = XLSX.utils.json_to_sheet(jsonHeader);
         XLSX.utils.book_append_sheet(workbook, ws1, "Presidents");
 
         XLSX.writeFile(workbook, filePath)
+
+        //const wopts = {bookType: 'xlsx', bookSST: true, type: 'binary'};
+        //XLSX.write(workbook, wopts);
+        //saveAs(new Blob([s2ab(XLSX.write(workbook, wopts))], {type: "application/octet-stream"}), code + '.' + (wopts.bookType == "biff2" ? "xls" : wopts.bookType));
+
+        console.log("generateXLS over", code);
 
     }
 
@@ -581,5 +628,4 @@ $requestions = get_requestion_by_operator($user_id, 0);
 
     //alert(today);
 </script>
-
 

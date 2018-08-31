@@ -1,4 +1,5 @@
 
+/*
 function suggetion() {
 
      $('#sug_input').keyup(function(e) {
@@ -74,7 +75,7 @@ function suggetion() {
                 $('input[name=total]').val(total.toFixed(2));
     });
   }
-
+*/
   $(document).ready(function() {
 
     //tooltip
@@ -82,11 +83,15 @@ function suggetion() {
 
     $('.submenu-toggle').click(function () {
        $(this).parent().children('ul.submenu').toggle(200);
+       //console.log($(this));
+       //alert('xx');
+       //console.log($(this).array());
     });
+
     //suggetion for finding product names
-    suggetion();
+    //suggetion();
     // Callculate total ammont
-    total();
+    //total();
 
     $('.datepicker')
         .datepicker({
@@ -95,3 +100,4 @@ function suggetion() {
             autoclose: true
         });
   });
+

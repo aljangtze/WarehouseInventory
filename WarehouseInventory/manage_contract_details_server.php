@@ -22,8 +22,8 @@ function returnError($info, $rollback = true)
 function get_contact_requestion_details_by_id($contract_id)
 {
     global $db;
-    $sql = "select a.id as requestion_detail_id, ce.code as contract_code, rq.code as requestion_code, pj.name as project_name, a.requestion_id, DATE(a.requestion_date) as requestion_date, Date(a.expect_date) as expect_date, 
-            a.reference,pt.name as product_type_name,
+    $sql = "select distinct a.id as requestion_detail_id, ce.code as contract_code, rq.code as requestion_code, pj.name as project_name, a.requestion_id, DATE(a.requestion_date) as requestion_date, Date(a.expect_date) as expect_date, 
+            a.reference,pt.name as product_type_name, u.name as user_name,
             b.name, b.specification, concat(b.name, ',', b.specification,',', b.model_number) as product_name, a.memo,
             q.qualification_info,a.is_test, a.is_reprocess, concat(a.requestion_number, ' ', b.unit) as requestion_info, concat(a.godown_number, ' ', b.unit) as godown_info, 
             b.model_number,  a.requestion_number, a.godown_number, b.unit from requestion_details as a 
@@ -34,6 +34,7 @@ function get_contact_requestion_details_by_id($contract_id)
             left join product_type as pt on b.type = pt.id
             left join contract_entry_details as cd on cd.requestion_details_id=a.id
             left join contract_entry as ce on cd.contract_id=ce.id
+            left join users as u on rq.initiator=u.id
             where cd.contract_id={$db->escape($contract_id)} order by ce.code,rq.code";
 
     $result = $db->query($sql);
@@ -77,26 +78,21 @@ function updateContact($items, $status)
 
     $sql = "update contract_entry set status = case id ";
     $sqlOperator = ", operator=case id ";
-    foreach ($items as $id)
-    {
-        $sql = $sql." when {$id} then {$status} ";
-        $sqlOperator = $sqlOperator." when {$id} then {$_SESSION['user_id']} ";
+    foreach ($items as $id) {
+        $sql = $sql . " when {$id} then {$status} ";
+        $sqlOperator = $sqlOperator . " when {$id} then {$_SESSION['user_id']} ";
     }
 
-    $sql = $sql."else status end";
-    $sqlOperator = $sqlOperator."else operator end";
+    $sql = $sql . "else status end";
+    $sqlOperator = $sqlOperator . "else operator end";
 
-    $sql = $sql.$sqlOperator;
+    $sql = $sql . $sqlOperator;
     $result = $db->query($sql);
-    if($result)
-    {
+    if ($result) {
         //return $db->affected_rows();
         return true;
-    }
-    else
+    } else
         return false;
-
-    //$db->commit();
 
     return true;
 }
@@ -104,10 +100,75 @@ function updateContact($items, $status)
 if (isset($_POST) and count($_POST) != 0) {
     $operate_id = $_POST["operate_id"];
     $items = $_POST['data'];
-    $status = $_POST['status'];
-
-    if (true == updateContact($items, $status)) {
-        echo json_encode($retData);
+    switch ($operate_id) {
+        case 0:
+            $status = $_POST['status'];
+            if (true == updateContact($items, $status)) {
+                echo json_encode($retData);
+            } else {
+                returnError("更新合同信息失败");
+            }
+            break;
+        case 1:
+            //获取导出数据
+            $idList = generateIDlist($items);
+            $data = get_contact_export_details_id_list($idList);
+            $retData['data'] = $data;
+            echo json_encode($retData);
+            break;
     }
 }
+function generateIDlist($items)
+{
+    $idList = '';
+    $isFirst = true;
+
+    if (count($items) <= 0)
+        return "{}";
+
+    foreach ($items as $id) {
+        if ($isFirst == true) {
+            $idList = $idList . $id;
+            $isFirst = false;
+        } else {
+            $idList = $idList . "," . $id;
+        }
+    }
+
+    return $idList;
+}
+
+function get_contact_export_details_id_list($items)
+{
+    global $db;
+    $sql = "select distinct ce.id as contract_id, a.id as requestion_detail_id, ce.code as contract_code, rq.code as requestion_code, pj.name as project_name, a.requestion_id, DATE(a.requestion_date) as requestion_date, Date(a.expect_date) as expect_date, 
+            a.reference,pt.name as product_type_name, u.name as user_name,
+            b.name, b.specification, concat(b.name, ',', b.specification,',', b.model_number) as product_name, a.memo,
+            q.qualification_info,a.is_test, a.is_reprocess, concat(a.requestion_number, ' ', b.unit) as requestion_info, concat(a.godown_number, ' ', b.unit) as godown_info, 
+            b.model_number,  a.requestion_number, a.godown_number, b.unit from requestion_details as a 
+            left join project as pj on a.project_id=pj.id
+            left join product as b on a.product_id=b.id 
+            left join qualification as q on a.qualification_id=q.id
+            left join requestion as rq on a.requestion_id=rq.id
+            left join product_type as pt on b.type = pt.id
+            left join contract_entry_details as cd on cd.requestion_details_id=a.id
+            left join contract_entry as ce on cd.contract_id=ce.id
+            left join users as u on rq.initiator=u.id
+            where cd.contract_id in ({$db->escape($items)}) order by cd.contract_id, cd.id";
+
+    $result = $db->query($sql);
+    $result_set = $db->while_loop($result);
+
+    $jarr = array();
+    foreach ($result_set as $result) {
+        $count = count($result);//不能在循环语句中，由于每次删除 row数组长度都减小
+        for ($i = 0; $i < $count; $i++) {
+            unset($result[$i]);//删除冗余数据
+        }
+        array_push($jarr, $result);
+    }
+
+    return $jarr;
+}
+
 ?>
