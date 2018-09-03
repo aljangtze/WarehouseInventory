@@ -85,6 +85,19 @@ public function affected_rows()
 {
   return mysqli_affected_rows($this->con);
 }
+
+function isNull($str)
+{
+    if($str == "")
+    {
+        return "null";
+    }
+    else
+    {
+        return "'".escape($str)."'";
+    }
+}
+
 /*--------------------------------------------------------------*/
  /* Function for Remove escapes special
  /* characters in a string for use in an SQL statement

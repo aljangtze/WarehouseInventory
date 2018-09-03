@@ -129,6 +129,8 @@
             return false;
         }
     }
+
+    var current_user_name = '<?php echo ucfirst($user['name']);?>';
 </script>
 <div class="page">
     <div class="container-fluid">

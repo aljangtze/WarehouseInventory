@@ -205,7 +205,7 @@ function get_contact_details()
                 "制单人",
                 null,
                 null,
-                "xxx"
+                current_user_name
             ],
             [
                 "请购明细"

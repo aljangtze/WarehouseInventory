@@ -443,7 +443,7 @@ $requestions = get_requestion_by_operator($user_id, 0);
                 "制单人",
                 null,
                 null,
-                "xxx"
+                current_user_name
             ],
             [
                 "请购明细"

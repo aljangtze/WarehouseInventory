@@ -98,4 +98,15 @@
             <li><a href="daily_sales.php">Daily sales</a></li>
         </ul>
     </li>
+    <li>
+        <a href="#" class="submenu-toggle">
+            <i class="glyphicon glyphicon-folder-open"></i>
+            <span>专利管理</span>
+        </a>
+        <ul class="nav submenu">
+            <li><a href="add_patent.php">新增专利 </a></li>
+            <li><a href="manage_patent.php">专利信息一览</a></li>
+            <li><a href="daily_sales.php">Daily sales</a></li>
+        </ul>
+    </li>
 </ul>
