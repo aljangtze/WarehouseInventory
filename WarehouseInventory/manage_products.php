@@ -28,6 +28,7 @@ $product_types = find_all('product_type');
 
 $units = find_all('units');
 ?>
+<?php include_once('layouts/header.php'); ?>
 
 <script type="text/javascript">
 
@@ -186,7 +187,7 @@ $units = find_all('units');
     }
 
 </script>
-<?php include_once('layouts/header.php'); ?>
+
 <div class="row">
     <div class="col-md-12" id="head_msg_info">
         <?php echo display_msg($msg); ?>

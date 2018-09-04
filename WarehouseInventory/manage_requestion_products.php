@@ -6,12 +6,14 @@ page_require_level(2);
 
 $suppliers = find_all('supplier');
 ?>
+<?php include_once('layouts/header.php'); ?>
+
 <script type="text/javascript">
     var ds = '<?php $user_id = $_SESSION['user_id']; $requestion_infos = get_requestion_product_details(0); echo str_replace('"', '"', json_encode($requestion_infos)); ?>';
     //console.log(ds);
     var requestion_data = JSON.parse(ds);
 </script>
-<?php include_once('layouts/header.php'); ?>
+
 <html>
 <body>
 <div class="row">

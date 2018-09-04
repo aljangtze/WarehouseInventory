@@ -86,7 +86,7 @@ public function affected_rows()
   return mysqli_affected_rows($this->con);
 }
 
-function isNull($str)
+public function isNull($str)
 {
     if($str == "")
     {
@@ -94,7 +94,7 @@ function isNull($str)
     }
     else
     {
-        return "'".escape($str)."'";
+        return "'".($this->escape($str))."'";
     }
 }
 

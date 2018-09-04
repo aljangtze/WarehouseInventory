@@ -173,7 +173,7 @@ $rk_code_info = getGoDownCode();
                         <div class="form-group">
                             <label class="col-sm-2 control-label">专利申请日</label>
                             <div class="col-sm-2">
-                                <input class="form-control datePicker" name="submit_date" id="submit_date" type="date" placeholder=""/>
+                                <input class="form-control datepicker" name="submit_date" id="submit_date" type="date" placeholder=""/>
                             </div>
                             <label class="col-sm-1 control-label">申请号</label>
                             <div class="col-sm-2">
@@ -198,7 +198,7 @@ $rk_code_info = getGoDownCode();
                         <div class="form-group">
                             <label class="col-sm-2 control-label">优先权日</label>
                             <div class="col-sm-2">
-                                <input class="form-control datePicker" name="priority_date" id="priority_date" type="date" placeholder=""/>
+                                <input class="form-control datepicker" name="priority_date" id="priority_date" type="date" placeholder=""/>
                             </div>
                             <label class="col-sm-1 control-label">优先权申请号</label>
                             <div class="col-sm-2">

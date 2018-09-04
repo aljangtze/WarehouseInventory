@@ -27,6 +27,7 @@ $product_types = find_all('product_type');
 $units = find_all('units');
 ?>
 
+<?php include_once('layouts/header.php'); ?>
 <script type="text/javascript">
 
     console.log('start');
@@ -62,7 +63,7 @@ $units = find_all('units');
     var g_reqeustionData = {};
     g_reqeustionData['items'] = {};
 
-    function  deleteProduct(id) {
+    function  deletePatent(id) {
         var data={};
         data['operate_type'] = 'del';
         var item = {};
@@ -70,12 +71,9 @@ $units = find_all('units');
         data['data'] = item;
 
         console.log(data);
-
-
-
         $.ajax({
             type: "POST",
-            url: "manage_products_server.php",//请求的后台地址
+            url: "manage_patent_server.php",//请求的后台地址
             data: data,
             success: function (msg) {//msg:返回值
                 var jsonObj = JSON.parse(msg);
@@ -165,7 +163,7 @@ $units = find_all('units');
     }
 
 </script>
-<?php include_once('layouts/header.php'); ?>
+
 <div class="row">
     <div class="col-md-12" id="head_msg_info">
         <?php echo display_msg($msg); ?>
@@ -185,6 +183,7 @@ $units = find_all('units');
                 <table id="example" class="table table-bordered table-hover" data-height="750" align="center"
                        data-unique-id="id"
                        data-toolbar="#toolbar1"
+                       data-show-export="true"
                        data-show-multi-sort="true"
                        data-sort-priority='[{"sortName": "project_code", "sortOrder":"asc"},{"sortName": "office_code", "sortOrder":"asc"}]'>
                     <thead>
@@ -200,9 +199,9 @@ $units = find_all('units');
                         <th class="text-center" data-sortable="true" data-field="patent_code">申请号/专利号</th>
                         <th class="text-center" data-sortable="true" data-field="submit_date">专利申请日</th>
                         <th class="text-center" data-sortable="true" data-field="law_status" data-visible="true">法律状态</th>
-                        <th class="text-center" data-sortable="true" data-field="is_early_public" data-visible="true">是否提前公开</th>
+                        <th class="text-center" data-sortable="true" data-field="is_early_public" data-visible="true" data-formatter="formatter_charge">是否提前公开</th>
                         <th class="text-center" data-sortable="true" data-field="submit_early_public_date" data-visible="true">提前公开日期</th>
-                        <th class="text-center" data-sortable="true" data-field="is_actual_audit" data-visible="true">是否提出实审</th>
+                        <th class="text-center" data-sortable="true" data-field="is_actual_audit" data-visible="true" data-formatter="formatter_charge">是否提出实审</th>
                         <th class="text-center" data-sortable="true" data-field="submit_actual_audit_date" data-visible="true">提前实审日</th>
                         <th class="text-center" data-sortable="true" data-field="actual_audit_notice_date" data-visible="true">提前实审日提醒</th>
                         <th class="text-center" data-sortable="true" data-field="priority_date" data-visible="true">优先权日</th>
@@ -219,13 +218,13 @@ $units = find_all('units');
                         <th class="text-center" data-sortable="true" data-field="agent" data-visible="true">代理人</th>
                         <th class="text-center" data-sortable="true" data-field="agent_notice_date" data-visible="true">代理提醒日</th>
                         <th class="text-center" data-sortable="true" data-field="agent_submit_date" data-visible="true">代理提交日期</th>
-                        <th class="text-center" data-sortable="true" data-field="is_authorization_notification" data-visible="true">是否发授权通知书</th>
+                        <th class="text-center" data-sortable="true" data-field="is_authorization_notification" data-visible="true" data-formatter="formatter_charge">是否发授权通知书</th>
                         <th class="text-center" data-sortable="true" data-field="authorization_notification_date" data-visible="true">授权通知书发文日期</th>
-                        <th class="text-center" data-sortable="true" data-field="is_authorization_announcement" data-visible="true">是否授权公告</th>
+                        <th class="text-center" data-sortable="true" data-field="is_authorization_announcement" data-visible="true" data-formatter="formatter_charge">是否授权公告</th>
                         <th class="text-center" data-sortable="true" data-field="authorization_announcement_date" data-visible="true">授权公告日期</th>
-                        <th class="text-center" data-sortable="true" data-field="is_has_certificate" data-visible="true">是否有证书</th>
+                        <th class="text-center" data-sortable="true" data-field="is_has_certificate" data-visible="true" data-formatter="formatter_charge">是否有证书</th>
                         <th class="text-center" data-sortable="true" data-field="certificate_date" data-visible="true">纸质证书收到日期</th>
-                        <th class="text-center" data-sortable="true" data-field="id" data-visible="true">id</th>
+                        <th class="text-center" data-sortable="true" data-field="id" data-visible="true" data-formatter="formatter_operator">操作</th>
                     </tr>
                     </thead>
                     <tbody class="text-center">
@@ -263,15 +262,13 @@ $units = find_all('units');
         var id = row.id;
         return '<div class="btn-group" > \
         <a style="height:20px;" onclick="updateDetails(' + id + ')" class="btn btn-xs btn-info" data-toggle="tooltip" title="Edit">\
-        <i class="glyphicon glyphicon-ok"></i>\
+        <i class="glyphicon glyphicon-edit"></i>\
         </a>\
-        <a style="height:20px;" onclick="deleteProduct(' +  id + ')" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">\
+        <a style="height:20px;" onclick="deletePatent(' +  id + ')" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">\
         <i class="glyphicon glyphicon-remove"></i>\
         </a>\
         </div>';
     }
-
-
 
     function formatter_favorite(value, row, index) {
         var id = row.id;
@@ -285,6 +282,17 @@ $units = find_all('units');
                 <a style="height:20px;"  class="btn btn-xs btn-info" data-toggle="tooltip" title="Remove">\
                 <i class="glyphicon glyphicon-star-empty"></i>\
                 </a></div>';
+    }
+
+    function formatter_charge(value, row, index) {
+        if(value == 0)
+        {
+            return '否';
+        }
+        else
+        {
+            return '是';
+        }
     }
 </script>
 
