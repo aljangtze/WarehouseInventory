@@ -3,9 +3,15 @@ $page_title = '入库信息';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
-$rk_code_info = getGoDownCode();
-?>
 
+#$rule_result_list = page_rule_list($_SESSION['user_id']);
+
+$exists = isExists($result, "0001");
+if(false == $exists)
+{
+    redirect('index.php', false);
+}
+?>
 
 <?php include_once('layouts/header.php'); ?>
 <div class="row">

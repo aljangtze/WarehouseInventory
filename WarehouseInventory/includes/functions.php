@@ -123,5 +123,39 @@ function randString($length = 5)
   return $str;
 }
 
+function isExists($data, $code)
+{
+    foreach($data as $item)
+    {
+        if($item['code'] == $code)
+            return true;
+    }
 
+    return false;
+}
+
+function getDisplayRule($ruleData, $code, $codeParent="")
+{
+    $isExistsChild = isExists($ruleData, $code);
+
+    $isExists = false;
+    if($codeParent == "")
+    {
+        $isExists = $isExistsChild;
+    }
+    else
+    {
+        $isExistsParent = isExists($ruleData, $codeParent);
+        $isExists = $isExistsChild &  $isExistsParent;
+    }
+
+    if($isExists)
+    {
+        echo "display:block;";
+    }
+    else
+    {
+        echo "display:none;";
+    }
+}
 ?>

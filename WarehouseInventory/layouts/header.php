@@ -1,4 +1,12 @@
-<?php $user = current_user(); ?>
+<?php
+    require_once('includes/load.php');
+
+    $user = current_user();
+
+    if($session->isUserLoggedIn())
+        $rule_result_list = page_rule_list($_SESSION['user_id']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,16 +80,18 @@
             </div>
         </div>
     </header>
-    <div class="sidebar">
-        <?php if ($user['user_level'] === '1'): ?>
+    <div class="sidebar" >
+        <?php include_once('admin_menu.php'); ?>
+
+        <?php if ($user['user_level'] === '1x'): ?>
             <!-- admin menu -->
             <?php include_once('admin_menu.php'); ?>
 
-        <?php elseif ($user['user_level'] === '2'): ?>
+        <?php elseif ($user['user_level'] === '2x'): ?>
             <!-- Special user -->
             <?php include_once('special_menu.php'); ?>
 
-        <?php elseif ($user['user_level'] === '3'): ?>
+        <?php elseif ($user['user_level'] === '3x'): ?>
             <!-- User menu -->
             <?php include_once('user_menu.php'); ?>
 

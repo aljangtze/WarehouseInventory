@@ -2,7 +2,7 @@
 $page_title = '新建请购单';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
-page_require_level(2);
+page_require_level("10001");
 
 include_once('layouts/header.php');
 ?>

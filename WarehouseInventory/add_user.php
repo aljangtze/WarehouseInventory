@@ -3,7 +3,7 @@
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
   page_require_level(1);
-  $groups = find_all('user_groups');
+  $groups = find_all('role_group');
 ?>
 <?php
   if(isset($_POST['add_user'])){
@@ -66,7 +66,7 @@
               <label for="level">用户角色</label>
                 <select class="form-control" name="level">
                   <?php foreach ($groups as $group ):?>
-                   <option value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
+                   <option value="<?php echo $group['id'];?>"><?php echo ucwords($group['name']);?></option>
                 <?php endforeach;?>
                 </select>
             </div>

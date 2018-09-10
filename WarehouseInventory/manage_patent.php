@@ -1,7 +1,8 @@
+
+<?php require_once('includes/load.php');?>
+
 <?php
 $page_title = '合同详情';
-require_once('includes/load.php');
-
 page_require_level(2);
 
 function get_patent_details()
@@ -28,6 +29,7 @@ $units = find_all('units');
 ?>
 
 <?php include_once('layouts/header.php'); ?>
+
 <script type="text/javascript">
 
     console.log('start');

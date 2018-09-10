@@ -2,7 +2,7 @@
 $page_title = '合同详情';
 require_once('includes/load.php');
 
-page_require_level(2);
+page_require_level("80001");
 
 function get_product_details()
 {

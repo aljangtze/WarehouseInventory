@@ -64,7 +64,22 @@ function find_rule_by_id($id)
     global $db;
     $id = (int)$id;
 
-    $result = $db->query("select a.*, b.id as relation_id, case when role_id is null then 0 else 1 end as checked from rule as a left join role_rules as b on b.rule_id=a.id and b.role_id='{$db->escape($id)}'");
+    $result = $db->query("select a.*, b.id as relation_id, case when role_id is null then 0 else 1 end as checked from rule as a left join role_rules as b on b.rule_id=a.id and b.role_id='{$db->escape($id)}' order by a.id, checked");
+    $result_set = $db->while_loop($result);
+    return $result_set;
+
+    /*global $db;
+    $result = $db->query($sql);*/
+    //$result_set = $db->while_loop($result);
+    //return $result_set;
+}
+
+function find_role_group_by_id($id)
+{
+    global $db;
+    $id = (int)$id;
+
+    $result = $db->query("select a.*, b.id as relation_id, case when role_id is null then 0 else 1 end as checked from role as a left join role_group_roles as b on b.role_id=a.id and b.group_id='{$db->escape($id)}'");
     $result_set = $db->while_loop($result);
     return $result_set;
 
@@ -188,10 +203,10 @@ function find_all_user()
     global $db;
     $results = array();
     $sql = "SELECT u.id,u.name,u.username,u.user_level,u.status,u.last_login,";
-    $sql .= "g.group_name ";
+    $sql .= "g.name as group_name ";
     $sql .= "FROM users u ";
-    $sql .= "LEFT JOIN user_groups g ";
-    $sql .= "ON g.group_level=u.user_level ORDER BY u.name ASC";
+    $sql .= "LEFT JOIN role_group g ";
+    $sql .= "ON g.id=u.user_level ORDER BY u.name ASC";
     $result = find_by_sql($sql);
     return $result;
 }
@@ -235,6 +250,21 @@ function find_by_roleName($val)
     #return($db->num_rows($result) === 0 ? true : false);
 }
 
+function find_by_role_group_name($val)
+{
+    global $db;
+    $sql = "SELECT id FROM role_group WHERE name = '{$db->escape($val)}' LIMIT 1 ";
+    $dbquery = $db->query($sql);
+    $result = $db->fetch_assoc($dbquery);
+    if ($result)
+        return $result;
+    else
+        return null;
+
+
+    #return($db->num_rows($result) === 0 ? true : false);
+}
+
 function is_exist_by_rule_name($name)
 {
     global $db;
@@ -254,10 +284,40 @@ function find_by_groupLevel($level)
     return ($db->num_rows($result) === 0 ? true : false);
 }
 
+//查找用户关联的角色
+function find_by_role_group($role_group)
+{
+    global $db;
+    $sql = "SELECT id, name, memo, status  FROM role_group WHERE id = '{$db->escape($role_group)}' LIMIT 1 ";
+    $result = $db->query($sql);
+    $result = $db->fetch_assoc($result);
+    if ($result)
+        return $result;
+    else
+        return null;
+}
+
+//isExists
+function is_exist_rule($code, $role_group)
+{
+    global $db;
+    $sql = "select distinct ru.* from users as u
+            left join role_group as rg on rg.id=u.user_level
+            left join role_group_roles as rgr on rgr.group_id=rg.id
+            left join role as ro on ro.id=rgr.role_id
+            left join role_rules as rr on rr.role_id=ro.id
+            left join rule as ru on rr.rule_id=ru.id
+            where ru.id is not null and rgr.group_id={$db->escape($role_group)} and ru.code='{$db->escape($code)}'";
+
+    $result = $db->query($sql);
+    $isExists =($db->num_rows($result) === 0 ? false : true);
+    return $isExists;
+}
+
 /*--------------------------------------------------------------*/
 /* Function for cheaking which user level has access to page
 /*--------------------------------------------------------------*/
-function page_require_level($require_level)
+function page_require_levelx($require_level)
 {
     global $session;
     $current_user = current_user();
@@ -277,6 +337,65 @@ function page_require_level($require_level)
         $session->msg("d", "Sorry! you dont have permission to view the page.");
         redirect('home.php', false);
     endif;
+
+}
+
+function page_require_level($rule_code)
+{
+    global $session;
+    $current_user = current_user();
+
+    //$rule_code = "00001";
+    //if user not login
+    if (!$session->isUserLoggedIn(true)) {
+        $session->msg('d', 'Please login...');
+        redirect('index.php', false);
+    } else {
+        $login_level = find_by_role_group($current_user['user_level']);
+
+        if ($login_level == null) {
+            $session->msg('d', 'This level user has been band!');
+            redirect('home.php', false);
+            return;
+        }
+
+        $group_id = $login_level["id"];
+        //if Group status Deactive
+        if ($login_level['status'] === '0'):
+            $session->msg('d', 'This level user has been band!');
+            redirect('home.php', false);
+        //        //cheackin log in User level and Require level is Less than or equal to
+        elseif (is_exist_rule($rule_code, $group_id)):
+            return true;
+        else:
+            $session->msg("d", "Sorry! you dont have permission to view the page.");
+            redirect('home.php', false);
+        endif;
+    }
+}
+
+function page_rule_list($user_id)
+{
+    global $db;
+    $sql = "select distinct ru.id as rule_id, ru.code ,ru.status from users as u
+            left join role_group as rg on rg.id=u.user_level
+            left join role_group_roles as rgr on rgr.group_id=rg.id
+            left join role as ro on ro.id=rgr.role_id
+            left join role_rules as rr on rr.role_id=ro.id
+            left join rule as ru on rr.rule_id=ru.id
+            where ru.id is not null and u.id={$db->escape($user_id)} and ro.status=1 and ru.status=1";
+
+    $result_set = find_by_sql($sql);
+    $jarr = array();
+    foreach ($result_set as $result) {
+        $count = count($result);//不能在循环语句中，由于每次删除 row数组长度都减小
+        for ($i = 0; $i < $count; $i++) {
+            unset($result[$i]);//删除冗余数据
+        }
+        array_push($jarr, $result);
+    }
+
+    return $jarr;
 
 }
 

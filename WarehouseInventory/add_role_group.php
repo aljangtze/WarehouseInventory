@@ -3,7 +3,7 @@ $page_title = '添加新角色';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(1);
-$all_rules = find_all('rule');
+$all_rules = find_all('role');
 ?>
 <?php
 if (isset($_POST['add'])) {
@@ -11,33 +11,40 @@ if (isset($_POST['add'])) {
     $checked_list = $_POST["s"];
     $req_fields = array('role-name', 'role-info');
     validate_fields($req_fields);
-    $role_data = find_by_roleName($_POST['role-name']);
+    $role_data = find_by_role_group_name($_POST['role-name']);
     if (!is_null($role_data)) {
-        $session->msg('d', '<b>抱歉</b> 输入的角色名已经存在!');
-        redirect('add_role.php', false);
+        $session->msg('d', '<b>抱歉</b> 输入的角色分组已经存在!');
+        redirect('add_role_group.php', false);
     }
 
     $name = remove_junk($db->escape($_POST['role-name']));
     $memo = remove_junk($db->escape($_POST['role-info']));
     $status = remove_junk($db->escape($_POST['status']));
 
+    if($name == "")
+    {
+        $session->msg('s', "创建角色分组失败，角色分组名称不能为空！");
+        redirect('add_role_group.php', false);
+        return;
+    }
+
     $db->transaction();
-    $query = "INSERT INTO role (name, memo, status) values('$name','$memo',$status)";
+    $query = "INSERT INTO role_group (name, memo, status) values('$name','$memo',$status)";
     if ($db->query($query)) {
         if (sizeof($checked_list) === 0) {
             $db->commit();
-            $session->msg('s', "创建角色成功！");
-            redirect('role.php', false);
+            $session->msg('s', "创建角色分组成功！");
+            redirect('role_group.php', false);
             return;
         }
 
         //下面是更新权限
         //find_by_roleName($_POST['role-name'])
-        $role_data = find_by_roleName($_POST['role-name']);
+        $role_data = find_by_role_group_name($_POST['role-name']);
         $role_id = $role_data['id'];
 
-        $sql = "insert ignore into role_rules (role_id, rule_id) values";
-        $insql = "delete from role_rules where rule_id not in (";
+        $sql = "insert ignore into role_group_roles (group_id, role_id) values";
+        $insql = "delete from role_group_roles where role_id not in (";
         $isFirst = true;
         foreach ($checked_list as $rule_id) {
             if ($isFirst) {
@@ -49,24 +56,24 @@ if (isset($_POST['add'])) {
                 $insql = $insql . ",$rule_id";
             }
         }
-        $insql = $insql . ") and role_id=".$role_id;
+        $insql = $insql . ") and group_id=".$role_id;
 
         if ($db->query($sql) && $db->query($insql)) {
             $db->commit();
             //sucess
-            $session->msg('s', "创建角色成功！");
-            redirect('role.php', false);
+            $session->msg('s', "创建角色分组成功！");
+            redirect('role_group.php', false);
         } else {
             $db->rollback();
             //failed
             $session->msg('d', '抱歉，创建角色失败！');
-            redirect('add_role.php', false);
+            redirect('add_role_group.php', false);
         }
     } else {
         $db->rollback();
         //failed
-        $session->msg('d', '抱歉，创建角色失败！');
-        redirect('add_role.php', false);
+        $session->msg('d', '抱歉，创建角色组失败！');
+        redirect('add_role_group.php', false);
     }
 
 }
@@ -77,14 +84,14 @@ if (isset($_POST['add'])) {
         <?php echo display_msg($msg); ?>
     </div>
 </div>
-<form method="post" action="add_role.php" class="clearfix">
+<form method="post" action="add_role_group.php" class="clearfix">
     <div class="row">
         <div class="col-md-5">
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">
                     <strong>
                         <span class="glyphicon glyphicon-th"></span>
-                        <span>选择权限</span>
+                        <span>选择角色</span>
                     </strong>
                 </div>
                 <div class="panel-body">
@@ -92,9 +99,9 @@ if (isset($_POST['add'])) {
                         <thead>
                         <tr>
                             <th class="text-center" style="width: 50px;">#</th>
-                            <th style=>权限名称</th>
+                            <th style=>角色名称</th>
                             <th class="text-center" style="width: 15%;">状态</th>
-                            <th class="text-center" style="width: 70px;">选择</th>
+                            <th class="text-center" style="width: 70px;">选中</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -130,12 +137,12 @@ if (isset($_POST['add'])) {
                     <div class="panel-heading clearfix">
                         <strong>
                             <span class="glyphicon glyphicon-th"></span>
-                            <span>添加新的角色</span>
+                            <span>添加新的角色组</span>
                         </strong>
                     </div>
 
                     <div class="text-center">
-                        <h3>添加新的角色</h3>
+                        <h3>添加新的角色组</h3>
                     </div>
                     <div class="form-group" style="width:80%;margin-left:10%;">
                         <label for="name" class="control-label">名称</label>

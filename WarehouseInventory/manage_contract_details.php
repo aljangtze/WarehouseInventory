@@ -2,7 +2,7 @@
 $page_title = '合同详情';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
-page_require_level(2);
+page_require_level("10003");
 
 function get_contact_details()
 {

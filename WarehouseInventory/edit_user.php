@@ -6,7 +6,7 @@
 ?>
 <?php
   $e_user = find_by_id('users',(int)$_GET['id']);
-  $groups  = find_all('user_groups');
+  $groups  = find_all('role_group');
   if(!$e_user){
     $session->msg("d","Missing user id.");
     redirect('users.php');
@@ -89,7 +89,7 @@ if(isset($_POST['update-pass'])) {
               <label for="level">用户角色</label>
                 <select class="form-control" name="level">
                   <?php foreach ($groups as $group ):?>
-                   <option <?php if($group['group_level'] === $e_user['user_level']) echo 'selected="selected"';?> value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
+                   <option <?php if($group['id'] === $e_user['user_level']) echo 'selected="selected"';?> value="<?php echo $group['id'];?>"><?php echo ucwords($group['name']);?></option>
                 <?php endforeach;?>
                 </select>
             </div>
