@@ -6,21 +6,7 @@
     <bookmark url="file://$PROJECT_DIR$/WarehouseInventory/manage_products_server.php" line="40" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fed8dfb7-0aba-46ea-a789-41847f183cdb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/WarehouseInventory/get_outgoing_entry_details.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/add_godown.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/add_godown.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/add_outgoing.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/add_outgoing.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/add_outgoing_server.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/add_outgoing_server.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/add_requestion.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/add_requestion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/add_requestion_background.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/add_requestion_background.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/get_godown_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/get_godown_details.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/get_godown_entry_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/get_godown_entry_details.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/get_specifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/get_specifications.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/includes/sql.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/includes/sql.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/manage_outgoing_entrys.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/manage_outgoing_entrys.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WarehouseInventory/manage_outgoing_entrys_server.php" beforeDir="false" afterPath="$PROJECT_DIR$/WarehouseInventory/manage_outgoing_entrys_server.php" afterDir="false" />
-    </list>
+    <list default="true" id="fed8dfb7-0aba-46ea-a789-41847f183cdb" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,35 +52,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="add_outgoing_server.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseInventory/add_outgoing_server.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-304">
-              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-              <folding>
-                <element signature="n#returnError#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="add_outgoing.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseInventory/add_outgoing.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-              <folding>
-                <element signature="e#2203#2285#0#HTML" />
-                <element signature="e#2564#3454#0#HTML" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#datalist#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#datalist#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="manage_outgoing_entrys.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WarehouseInventory/manage_outgoing_entrys.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -149,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sql.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sql.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WarehouseInventory/includes/sql.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="874" column="95" selection-start-line="874" selection-start-column="95" selection-end-line="874" selection-end-column="95" />
+            <state relative-caret-position="418">
+              <caret line="760" lean-forward="true" selection-start-line="760" selection-end-line="760" />
               <folding>
                 <element signature="n#find_by_groupLevel#0;n#!!top" />
                 <element signature="n#page_rule_list#0;n#!!top" />
@@ -167,6 +124,20 @@
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="database.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseInventory/includes/database.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WarehouseInventory/includes/config.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="get_godown_details.php" pinned="false" current-in-tab="false">
@@ -323,9 +294,9 @@
     </include_path>
   </component>
   <component name="PhpXdebugProxy" ide_key="PHPSTORM" host="testserver.com" port="8080" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2060" />
-    <option name="y" value="198" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="2366" />
+    <option name="y" value="507" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -474,15 +445,15 @@
       <workItem from="1535525228974" duration="521000" />
       <workItem from="1535525835994" duration="32559000" />
       <workItem from="1535937891054" duration="73000000" />
-      <workItem from="1536720578687" duration="30197000" />
+      <workItem from="1536720578687" duration="30484000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="577803000" />
+    <option name="totallyTimeSpent" value="578090000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="2366" y="507" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -491,13 +462,13 @@
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49635416" weight="0.019128587" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16822916" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23338151" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49947917" weight="0.19164118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49791667" visible="true" weight="0.19164118" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49791667" visible="true" weight="0.21242937" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -575,20 +546,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WarehouseInventory/get_requestion_details_server.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" selection-start-line="1" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseInventory/gennerate_contract_server.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_8.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
@@ -991,8 +948,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WarehouseInventory/includes/sql.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="874" column="95" selection-start-line="874" selection-start-column="95" selection-end-line="874" selection-end-column="95" />
+        <state relative-caret-position="418">
+          <caret line="760" lean-forward="true" selection-start-line="760" selection-end-line="760" />
           <folding>
             <element signature="n#find_by_groupLevel#0;n#!!top" />
             <element signature="n#page_rule_list#0;n#!!top" />
@@ -1006,6 +963,16 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseInventory/includes/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseInventory/includes/config.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
