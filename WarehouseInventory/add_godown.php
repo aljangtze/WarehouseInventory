@@ -132,13 +132,13 @@ $rk_code_info = getGoDownCode();
 
                         if (isFirst)
                         {
-                            retXml += "<option data-requestion-number=\"" + item['requestion_number'] + "\"data-godown-number=\"" + item['godown_number'] + "\" selected=\"selected\" data-id=\"" + item['id'] + "\" data-project-name=\"" + item['project_name'] + "\" data-unit=\"" + item['unit'] + "\" value=\"" + data_product_info + "\" data-product-name=\"" + item["product_name"] + "\" data-spc-model=\"" + data_product_spc_model + "\">" + data_product_info + " </option>";
+                            retXml += "<option data-row-num=\"" + item['row_num'] + "\" data-requestion-number=\"" + item['requestion_number'] + "\"data-godown-number=\"" + item['godown_number'] + "\" selected=\"selected\" data-id=\"" + item['id'] + "\" data-project-name=\"" + item['project_name'] + "\" data-unit=\"" + item['unit'] + "\" value=\"" + item['row_num'] + ":   " +  data_product_info + "\" data-product-name=\"" + item["product_name"] + "\" data-spc-model=\"" + data_product_spc_model + "\">" + item['row_num'] + ":   " +  data_product_info + " </option>";
 
                             //$("#product_number_info").text("物料数量:（请购:" + item['requestion_number'] +  ",已入库:" +  item['godown_number']  + "）");
                             isFirst=false;
                         }
                         else
-                            retXml += "<option data-requestion-number=\"" + item['requestion_number'] + "\"data-godown-number=\"" + item['godown_number'] + "\" data-id=\"" + item['id'] + "\" data-project-name=\"" + item['project_name'] + "\" data-unit=\"" + item['unit'] + "\" value=\"" + data_product_info + "\" data-product-name=\"" + item["product_name"] + "\" data-spc-model=\"" + data_product_spc_model + "\">" + data_product_info + "</option>";
+                            retXml += "<option data-row-num=\"" + item['row_num'] + "\" data-requestion-number=\"" + item['requestion_number'] + "\"data-godown-number=\"" + item['godown_number'] + "\" data-id=\"" + item['id'] + "\" data-project-name=\"" + item['project_name'] + "\" data-unit=\"" + item['unit'] + "\" value=\"" + item['row_num'] + ":   " +  data_product_info + "\" data-product-name=\"" + item["product_name"] + "\" data-spc-model=\"" + data_product_spc_model + "\">" + item['row_num'] + ":   " + data_product_info + "</option>";
 
                     }
                     //alert(retXml);
@@ -159,6 +159,7 @@ $rk_code_info = getGoDownCode();
     var product_sec_model = '';
     var product_unit = '';
     var requestion_project = "";
+    var can_godown_number = 0;
 
     function onProductChanged() {
         product_name = '';
@@ -173,12 +174,15 @@ $rk_code_info = getGoDownCode();
 
             if (modelnumber_name == option_value) {
                 requeston_detail_id = option.attributes['data-id'].value;
-                product_name = option.attributes['data-product-name'].value;
+                console.log("changeID ", requeston_detail_id);
+                product_name = option.attributes['data-row-num'].value + ": " + option.attributes['data-product-name'].value;
                 product_sec_model = option.attributes['data-spc-model'].value;
                 product_unit = option.attributes['data-unit'].value;
                 requestion_project = option.attributes['data-project-name'].value;
                 var requestion_number = option.attributes['data-requestion-number'].value;
                 var godown_number = option.attributes['data-godown-number'].value;
+
+                can_godown_number = parseInt(requestion_number)-parseInt(godown_number);
 
                 $("#product_number_info").text("物料数量:（请购:" + requestion_number +  ",已入库:" +  godown_number  + "）");
                 //console.log(requeston_detail_id);
@@ -208,6 +212,13 @@ $rk_code_info = getGoDownCode();
         var product_number = Number($("#data_product_number").val());
         if (product_number <= 0 || isNaN(product_number)) {
             noticeError("添加入库信息失败: 入库数量必须为大于0的数字，,请修改相应数据后重新添加！");
+            return;
+        }
+
+        if(product_number > can_godown_number)
+        {
+            noticeError("添加入库信息失败: 入库数量大于请购的数量！");
+            $("#data_product_number").focus();
             return;
         }
 
@@ -246,6 +257,7 @@ $rk_code_info = getGoDownCode();
             //console.log($("#product_name_info").val(),  $("#product_input_specification").val(), $("#product_input_modelnumber").val())
             console.log(item);
             if (item['requestion_details_id'] == requeston_detail_id) {
+                console.log(requeston_detail_id);
                 noticeError("已经添加过此物料 \"" + product_name + "\" ，一个入库单一类物料只能有一条信息！");
                 return;
             }

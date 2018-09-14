@@ -5,8 +5,8 @@ require_once('includes/load.php');
 page_require_level(1);
 ?>
 <?php
-$entry_header = get_godown_entry_summary_by_id($_GET['entry_id']);
-$entry_details = get_godown_entry_details_summary_by_id($_GET['entry_id']);
+$entry_header = get_outgoing_entry_summary_by_id($_GET['entry_id']);
+$entry_details = get_outgoing_entry_details_summary_by_id($_GET['entry_id']);
 ?>
 
 <script type="text/javascript">
@@ -187,13 +187,13 @@ $entry_details = get_godown_entry_details_summary_by_id($_GET['entry_id']);
             <table class="table table-bordered table-striped" align="center">
                 <thead>
                 <tr>
-                    <td colspan="10" class="text-center"><h4><b>入库单</b></h4></td>
+                    <td colspan="10" class="text-center"><h4><b>出库单</b></h4></td>
                 </tr>
                 <tr>
                     <td class="text-right" colspan="1"><b>单位：</b></td>
                     <td class="text-left" colspan="3" id="data_company_name">四川蓝光英诺生物科技股份有限公司</td>
-                    <td class="text-right" colspan="2"
-                    <b>入库单号:</b></td>
+                    <td class="text-right" colspan="3"
+                    <b>出库单号:</b></td>
                     <td class="text-center" colspan="3" id="data_godown_code"><?php echo $entry_header['code'] ?></td>
 
                 </tr>
@@ -201,14 +201,14 @@ $entry_details = get_godown_entry_details_summary_by_id($_GET['entry_id']);
                     <td class="text-right" colspan="1"><b>部门：</b></td>
                     <td class="text-left" colspan="3">研发中心</td>
 
-                    <td class="text-right" colspan="2"><b>入库日期:</b></td>
+                    <td class="text-right" colspan="3"><b>出库日期:</b></td>
                     <td class="text-center" colspan="3" id="data-date"><?php echo $entry_header['date'] ?></td>
                 </tr>
                 <tr>
                     <td class="text-right" colspan="1"><b>供应商：</b></td>
-                    <td class="text-left" colspan="3" id="data_supplier_name"><?php echo $entry_header['supplier_name'] ?></td>
-                    <td class="text-right" colspan="2"><b>请购单号:</b></td>
-                    <td class="text-center" colspan="3" id="data_requestion_code"><?php echo $entry_header['requestion_code'] ?></td>
+                    <td class="text-left" colspan="9" id="data_supplier_name"><?php echo $entry_header['supplier_name'] ?></td>
+                    <!--<td class="text-right" colspan="3"><b>请购单号:</b></td>
+                    <td class="text-center" colspan="2" id="data_requestion_code"><?php echo $entry_header['requestion_code'] ?></td>-->
                 </tr>
                 <tr>
                     <td class="text-center"><b>序号</b></td>
@@ -218,6 +218,8 @@ $entry_details = get_godown_entry_details_summary_by_id($_GET['entry_id']);
                     <td class="text-center"><b>单位</b></td>
                     <td class="text-center"><b>数量</b></td>
                     <td class="text-center"><b>项目</b></td>
+                    <td class="text-center"><b>供应商</b></td>
+                    <td class="text-center"><b>请购单号</b></td>
                     <td class="text-center"><b>备注</b></td>
                 </tr>
                 </thead>
@@ -231,6 +233,8 @@ $entry_details = get_godown_entry_details_summary_by_id($_GET['entry_id']);
                         <td class="text-center"><?php echo $a_group['unit']; ?></td>
                         <td class="text-center"><?php echo $a_group['number']; ?></td>
                         <td class="text-center"><?php echo $a_group['project_name']; ?></td>
+                        <td class="text-center"><?php echo $a_group['supplier_name']; ?></td>
+                        <td class="text-center"><?php echo $a_group['requestion_code']; ?></td>
                         <td class="text-center"><?php echo $a_group['memo']; ?></td>
                     </tr>
                 <?php endforeach; ?>
@@ -254,22 +258,5 @@ $entry_details = get_godown_entry_details_summary_by_id($_GET['entry_id']);
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    //alert("hello");
-    var now = new Date();
-
-    var day = ("0" + now.getDate()).slice(-2);
-    //格式化月，如果小于9，前面补0
-    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-
-    var today = now.getFullYear() + "-" + (month) + "-" + (day);
-    //document.getElementById("data_start_date").value = today;
-    document.getElementById("data_expect_date").value = today;
-    document.getElementById("data_start_date").valueAsDate = new Date();
-
-    //$("data_start_date").val(today);
-    //$("data_expect_date").val(today);
-    //alert(today);
-</script>
 <?php include_once('layouts/footer.php'); ?>
 

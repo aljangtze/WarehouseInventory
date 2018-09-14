@@ -310,7 +310,7 @@ function is_exist_rule($code, $role_group)
             where ru.id is not null and rgr.group_id={$db->escape($role_group)} and ru.code='{$db->escape($code)}'";
 
     $result = $db->query($sql);
-    $isExists =($db->num_rows($result) === 0 ? false : true);
+    $isExists = ($db->num_rows($result) === 0 ? false : true);
     return $isExists;
 }
 
@@ -351,6 +351,9 @@ function page_require_level($rule_code)
         $session->msg('d', 'Please login...');
         redirect('index.php', false);
     } else {
+        if ($rule_code == 1)
+            return;
+
         $login_level = find_by_role_group($current_user['user_level']);
 
         if ($login_level == null) {
@@ -814,6 +817,17 @@ function get_godown_entry_summary()
     return $result_set;
 }
 
+function get_outgoing_entry_summary()
+{
+    global $db;
+    $sql = "select a.*, u.name user_name from outgoing_entry as a 
+            left join users as u on a.initiator=u.id;";
+
+    $result = $db->query($sql);
+    $result_set = $db->while_loop($result);
+    return $result_set;
+}
+
 function get_godown_entry_summary_by_id($entry_id)
 {
     global $db;
@@ -827,13 +841,45 @@ function get_godown_entry_summary_by_id($entry_id)
     return $result_set;
 }
 
+function get_outgoing_entry_summary_by_id($entry_id)
+{
+    global $db;
+    $sql = "select a.*,'' supplier_name,u.name user_name from outgoing_entry as a 
+            left join users as u on a.initiator=u.id
+            where a.id={$db->escape($entry_id)};";
+
+    $result = $db->query($sql);
+    $result_set = $db->fetch_assoc($result);
+    return $result_set;
+}
+
 function get_godown_entry_details_summary_by_id($entry_id)
 {
     global $db;
-    $sql = "select a.*,b.name as product_name, b.specification, b.model_number as model_name, b.unit, c.requestion_number from godown_entry_details as a  
+    $sql = "select a.*,b.name as product_name, b.specification, b.model_number as model_name, b.unit,
+			c.requestion_number,pj.name as project_name from godown_entry_details as a  
             left join requestion_details as c on c.id=a.requestion_details_id
             left join product as b on b.id = c.product_id
+            left join project as pj on c.project_id=pj.id
             where a.godown_entry_id={$db->escape($entry_id)}";
+
+    $result = $db->query($sql);
+    $result_set = $db->while_loop($result);
+    return $result_set;
+}
+
+function get_outgoing_entry_details_summary_by_id($entry_id)
+{
+    global $db;
+    $sql = "select  distinct a.*,b.name as product_name, b.specification, b.model_number as model_name, 
+            b.unit, s.name as supplier_name,pj.name as project_name, r.code as requestion_code, rq.requestion_number, rq.godown_number
+            from outgoing_entry_details as a  
+            left join product as b on b.id = a.product_id
+            left join supplier as s on s.id=a.supplier_id
+            left join project as pj on a.project_id=pj.id
+            left join requestion_details as rq on rq.id=a.requestion_details_id
+            left join requestion as r on r.id=rq.requestion_id
+            where a.outgoing_entry_id={$db->escape($entry_id)}";
 
     $result = $db->query($sql);
     $result_set = $db->while_loop($result);
@@ -863,7 +909,7 @@ function get_godown_details_by_id($requestion_id)
 function get_requestion_details_by_code($requestion_code)
 {
     global $db;
-    $sql = "select a.id, f.code as requestion_code, a.requestion_id, Date(a.requestion_date) as requestion_date, '分组' as usergroup, a.code, '请购人' as username, c.name project_name, b.specification, 
+    $sql = "select @rowno:=@rowno+1 as row_num, a.id, f.code as requestion_code, a.requestion_id, Date(a.requestion_date) as requestion_date, '分组' as usergroup, a.code, '请购人' as username, c.name project_name, b.specification, 
                 b.model_number,  a.requestion_number, a.godown_number, b.unit, a.reference, b.name  as product_name, d.name as product_type_name, Date(a.expect_date) as expect_date, e.qualification_info,
                 case a.is_test when 1 then '是'  else '否' end as is_test, case a.is_reprocess when 1 then '是'  else '否' end as is_reprocess, a.memo
                  from requestion_details as a 
@@ -872,7 +918,29 @@ function get_requestion_details_by_code($requestion_code)
                 left join product_type as d on b.type=d.id
                 left join qualification as e on a.qualification_id=e.id 
                 left join requestion as f on a.requestion_id=f.id
+                inner join (select @rowno:=0) as t
                 where f.code = '{$db->escape($requestion_code)}' and a.requestion_number>a.godown_number order by a.requestion_id,a.id ";
+
+    $result = $db->query($sql);
+    $result_set = $db->while_loop($result);
+    return $result_set;
+}
+
+function get_outgoing_requestion_details()
+{
+    global $db;
+    $sql = "select @rowno:=@rowno+1 as row_num,dt.* from(
+select a.id, a.supplier_id,a.project_id,a.product_id, f.code as requestion_code, a.requestion_id, Date(a.requestion_date) as requestion_date, '分组' as usergroup, a.code, '请购人' as username, c.name project_name, b.specification, 
+                b.model_number,  a.requestion_number, a.godown_number,a.outgoing_number, b.unit, a.reference, b.name  as product_name, d.name as product_type_name, Date(a.expect_date) as expect_date, e.qualification_info,
+                case a.is_test when 1 then '是'  else '否' end as is_test, case a.is_reprocess when 1 then '是'  else '否' end as is_reprocess, a.memo
+                 from requestion_details as a 
+                left join product as b on a.product_id=b.id 
+                left join project as c on a.project_id =c.id
+                left join product_type as d on b.type=d.id
+                left join qualification as e on a.qualification_id=e.id 
+                left join requestion as f on a.requestion_id=f.id
+                where a.godown_number>a.outgoing_number order by  b.name, b.specification, b.model_number, f.date,a.requestion_id,a.id ) as dt
+                inner join (select @rowno:=0) as t";
 
     $result = $db->query($sql);
     $result_set = $db->while_loop($result);

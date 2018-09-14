@@ -3,6 +3,7 @@ $page_title = '添加分组';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(1);
+
 if (isset($_GET['product_name'])) {
     if ($_GET['product_name'] === "") {
         $arr['items'] = "";

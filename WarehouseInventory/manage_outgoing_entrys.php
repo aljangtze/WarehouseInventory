@@ -5,14 +5,7 @@ require_once('includes/load.php');
 page_require_level("30002");
 ?>
 <?php
-$requestion_QSInfo = getRequestionCode();
-if (null == $requestion_QSInfo) {
-    //
-} else {
-    $requestion_code = $requestion_QSInfo["code"];
-    $requestion_code_number = $requestion_QSInfo["number"];
-}
-$requestions = get_godown_entry_summary();
+$requestions = get_outgoing_entry_summary();
 ?>
 
 <script type="text/javascript">
@@ -50,11 +43,6 @@ $requestions = get_godown_entry_summary();
 
     }
 
-    function updateEntrys()
-    {
-
-    }
-
     function goToDetails(entry_id)
     {
         document.getElementById("product_details").innerHTML = "";
@@ -62,7 +50,7 @@ $requestions = get_godown_entry_summary();
 
         $.ajax({
             type: "GET",
-            url: "manage_godown_entrys_background.php",//请求的后台地址
+            url: "manage_outgoing_entrys_server.php",//请求的后台地址
             data: "entry_id=" + entry_id,//前台传给后台的参数
             success: function (msg) {//msg:返回值
                 var jsonObj = JSON.parse(msg);
@@ -82,6 +70,7 @@ $requestions = get_godown_entry_summary();
                     returnInnerXml +="<tr><td class=\"text-center \">" + item['id'] + "</td>";
                     returnInnerXml +="<td class=\"text-center \">" + item['product_name'] + "," +item['specification'] + ","+ item['model_name']+","+ "</td>";
                     returnInnerXml +="<td class=\"text-center \">" + item['requestion_number'] + " " + item['unit'] + "</td>";
+                    returnInnerXml +="<td class=\"text-center \">" + item['godown_number'] + " " + item['unit'] + "</td>";
                     returnInnerXml +="<td class=\"text-center \">" + item['number'] + " " +item['unit'] + "</td></tr>";
                 }
 
@@ -97,7 +86,7 @@ $requestions = get_godown_entry_summary();
         if(g_entry_id ==0)
             return;
 
-        window.open("get_godown_entry_details.php?entry_id="+g_entry_id);
+        window.open("get_outgoing_entry_details.php?entry_id="+g_entry_id);
     }
 </script>
 <?php include_once('layouts/header.php'); ?>
@@ -106,7 +95,7 @@ $requestions = get_godown_entry_summary();
         <?php echo display_msg($msg); ?>
     </div>
 </div>
-<div class="row  col-md-7">
+<div class="row  col-md-6">
     <div class="panel panel-default">
         <div class="panel-heading">
             <strong>
@@ -122,9 +111,7 @@ $requestions = get_godown_entry_summary();
                         <th class="text-center">#</th>
                         <th class="text-center">入库时间</th>
                         <th class="text-center">入库单号</th>
-                        <th class="text-center">请购单号</th>
                         <th class="text-center">入库人</th>
-                        <th class="text-center">供应商</th>
                     </tr>
                     </thead>
                     <tbody id="requestion_list" class="text-center">
@@ -133,9 +120,7 @@ $requestions = get_godown_entry_summary();
                             <td class="text-center "><?php echo count_id(); ?></td>
                             <td class="text-center"><?php echo $a_group['date']; ?></td>
                             <td class="text-center"><?php echo $a_group['code']; ?></td>
-                            <td class="text-center"><?php echo $a_group['requestion_code']; ?></td>
                             <td class="text-center"><?php echo $a_group['user_name']; ?></td>
-                            <td class="text-center"><?php echo $a_group['supplier_name']; ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -144,7 +129,7 @@ $requestions = get_godown_entry_summary();
         </div>
     </div>
 </div>
-<div class="ro col-md-5">
+<div class="ro col-md-6">
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
             <strong>
@@ -163,7 +148,9 @@ $requestions = get_godown_entry_summary();
                     <th class="text-center">#</th>
                     <th class="text-center">品名、规格、型号</th>
                     <th class="text-center">请购数量</th>
-                    <th class="text-center">入库数量</th>
+                    <th class="text-center">库存数量</th>
+                    <th class="text-center">出库数量</th>
+
                 </tr>
                 </thead>
                 <tbody id="product_details" class="text-center">
@@ -173,24 +160,5 @@ $requestions = get_godown_entry_summary();
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    //alert("hello");
-    var now = new Date();
-
-    var day = ("0" + now.getDate()).slice(-2);
-    //格式化月，如果小于9，前面补0
-    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-
-    var today = now.getFullYear() + "-" + (month) + "-" + (day);
-
-    //document.getElementById("data_start_date").value = today;
-    //document.getElementById("data_expect_date").value = today;
-    //document.getElementById("data_start_date").valueAsDate = new Date();
-
-    //$("data_start_date").val(today);
-    //$("data_expect_date").val(today);
-
-    //alert(today);
-</script>
 <?php include_once('layouts/footer.php'); ?>
 

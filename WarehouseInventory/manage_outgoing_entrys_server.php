@@ -22,7 +22,7 @@ function returnError($info, $rollback = false)
 if(isset($_GET['entry_id']))
 {
     $entry_id = $_GET['entry_id'];
-    $retData['items'] = get_godown_entry_details_summary_by_id($entry_id);
+    $retData['items'] = get_outgoing_entry_details_summary_by_id($entry_id);
     echo json_encode($retData);
 }
 

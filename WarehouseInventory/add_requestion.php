@@ -2,7 +2,7 @@
 $page_title = '新建请购单';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
-page_require_level("10001");
+page_require_level("00001");
 
 include_once('layouts/header.php');
 ?>
@@ -55,21 +55,22 @@ $users = find_all('users');
         //清除提示信息
         document.getElementById("head_msg_info").innerHTML = "";
         //选择值
-        //var product_name = $("#product_name_info").val();
-        var product_name = $("#product_name_info_list").val();
+        var product_name = $("#product_name_info").val();
+        //var product_name = $("#product_name_info_list").val();
 
         //设置规格为空
-        //document.getElementById("product_input_specification").value = "";
+        document.getElementById("product_input_specification").value = "";
         document.getElementById("product_input_specification_list").innerHTML = "";
 
 
         //设置型号为空
-        //document.getElementById("product_input_modelnumber").value = "";
+        document.getElementById("product_input_modelnumber").value = "";
         document.getElementById("product_input_modelnumber_list").innerHTML = "";
-
         if (isEmpty(product_name)) {
             return;
         }
+
+        console.log(product_name);
 
 
         //var spinner = new Spinner(opts);
@@ -92,8 +93,8 @@ $users = find_all('users');
                 //spinner.spin();
                 //没找到相应的物料
                 if (result == 'undefined') {
-                    //document.getElementById("product_input_specification").value = "/";
-                    //document.getElementById("product_input_modelnumber").value = "/";
+                    document.getElementById("product_input_specification").value = "/";
+                    document.getElementById("product_input_modelnumber").value = "/";
                     noticeWarning("物料名称不存在，将自动添加，请注意添加规格型号，单位及物料类别");
                     return;
                 }
@@ -102,18 +103,18 @@ $users = find_all('users');
                     return;
                 }
 
-                /*if(jsonObj.count <=0)
+                if(jsonObj.count <=0)
                 {
                     noticeWarning("此物料不存在，将自动添加");
                     document.getElementById("product_specification_info").innerHTML = "";
                     return;
-                }*/
+                }
 
                 var items = jsonObj.items;
                 var returnInnerXml = "";
                 if (items.length == 1) {
                     document.getElementById("product_input_specification_list").innerHTML = "<option value=\"" + items[0].specification + "\" >" + items[0].specification + "</option>";
-                    //document.getElementById("product_input_specification").value = items[0].specification;
+                    document.getElementById("product_input_specification").value = items[0].specification;
 
                     //通过修改规格来修改型号
                     updateModelnumber();
@@ -141,11 +142,14 @@ $users = find_all('users');
         //document.getElementById("product_input_modelnumber").value = "";
         document.getElementById("product_input_modelnumber_list").innerHTML = "";
 
-        //var product_specification = $("#product_input_specification").val();
-        //var product_name = $("#product_name_info").val();
-        var product_specification = $("#product_input_specification_list").val();
+        var product_specification = $("#product_input_specification").val();
+        var product_name = $("#product_name_info").val();
+        //var product_specification = $("#product_input_specification_list").val();
 
-        var product_name = $("#product_name_info_list").val();
+        console.log(product_name);
+        console.log(product_specification);
+
+        //var product_name = $("#product_name_info_list").val();
         //alert(product_name);
         //alert(product_specification);
 
@@ -165,13 +169,14 @@ $users = find_all('users');
                 // document.getElementById("specification_loading").style.display = "none";
             },
             success: function (msg) {
+                console.log(msg);
                 //msg:返回值
                 var jsonObj = JSON.parse(msg);
                 var result = jsonObj.result;
 
                 //没找到相应的物料
                 if (result == 'undefined') {
-                    //document.getElementById("product_input_modelnumber").value = "/";
+                    document.getElementById("product_input_modelnumber").value = "/";
                     document.getElementById("product_input_modelnumber_list").innerHTML = "";
 
                     noticeWarning("物料规格不存在，将自动添加，请注意修改型号，单位和物料类别");
@@ -185,7 +190,7 @@ $users = find_all('users');
                 var items = jsonObj.items;
 
                 if (items.length == 1) {
-                    //document.getElementById("product_input_modelnumber").value = items[0].model_number;
+                    document.getElementById("product_input_modelnumber").value = items[0].model_number;
                     document.getElementById("product_input_modelnumber_list").innerHTML = "<option value=\"" + items[0].model_number + "\" data-unit=" + items[0].unit + " data-type=" + items[0].type + ">" + items[0].model_number + "</option>";
 
                     //$("#data_product_unit").val(items[0].unit);
@@ -251,10 +256,7 @@ $users = find_all('users');
         return true;
     }
 
-
-
     function deleteNode(id) {
-
         delete  g_reqeustionData.items[id];
 
         $('#' + id).remove();
@@ -305,32 +307,33 @@ $users = find_all('users');
             return;
         }
 
-        if (false == validateData(($("#product_name_info_list").val()), "物料名称")) {
-            $("#product_name_info_list").focus();
+        if (false == validateData(($("#product_name_info").val()), "物料名称")) {
+            $("#product_name_info").focus();
             return;
         }
 
-        if (false == validateData(($("#product_input_specification_list").val()), "物料规格", true)) {
-            $("#product_input_specification_list").focus();
+        if (false == validateData(($("#product_input_specification").val()), "物料规格", true)) {
+            $("#product_input_specification").focus();
             return;
         }
-        if (false == validateData(($("#product_input_modelnumber_list").val()), "物料型号", true)) {
-            $("#product_input_modelnumber_list").focus();
+        if (false == validateData(($("#product_input_modelnumber").val()), "物料型号", true)) {
+            $("#product_input_modelnumber").focus();
             return;
         }
         //检查是否已经添加过某物品
+        /*
         for (var curData in g_reqeustionData.items) {
             var item = g_reqeustionData.items[curData];
             //console.log("item is ", item);
             //console.log($("#product_name_info").val(),  $("#product_input_specification").val(), $("#product_input_modelnumber").val())
-            if (item['product_name'] == $("#product_name_info_list").val() &&
-                item['specification_name'] == $("#product_input_specification_list").val() &&
-                item['modelnumber_name'] == $("#product_input_modelnumber_list").val()) {
-                noticeError("已经添加过此物料 \"" + $("#product_name_info_list").val() + "\" ，一个请购单一类物料只能有一条信息！");
+            if (item['product_name'] == $("#product_name_info").val() &&
+                item['specification_name'] == $("#product_input_specification").val() &&
+                item['modelnumber_name'] == $("#product_input_modelnumber").val()) {
+                noticeError("已经添加过此物料 \"" + $("#product_name_info").val() + "\" ，一个请购单一类物料只能有一条信息！");
                 return;
             }
         }
-
+        */
 
         detail_count = detail_count + 1;
 
@@ -342,9 +345,9 @@ $users = find_all('users');
         jsonData['date_end'] = $("#data_expect_date").val();
         jsonData['project_name'] = $("#data_project").find("option:selected").text();
         jsonData['project_id'] = $("#data_project").val();
-        jsonData['product_name'] = $("#product_name_info_list").val();
-        jsonData['specification_name'] = $("#product_input_specification_list").val();
-        jsonData['modelnumber_name'] = $("#product_input_modelnumber_list").val();
+        jsonData['product_name'] = $("#product_name_info").val();
+        jsonData['specification_name'] = $("#product_input_specification").val();
+        jsonData['modelnumber_name'] = $("#product_input_modelnumber").val();
         jsonData['product_number'] = $("#data_product_number").val();
         jsonData['unit'] = $("#data_product_unit").text();
         jsonData['type'] = $("#data_product_type").val();
@@ -402,13 +405,13 @@ $users = find_all('users');
 
         g_reqeustionData.items[jsonData['tr_id']] = jsonData;
 
-        //document.getElementById("product_name_info").value = "";
+        document.getElementById("product_name_info").value = "";
 
-        //document.getElementById("product_input_modelnumber").value = "";
-        //document.getElementById("product_input_modelnumber_list").innerHTML = "";
+        document.getElementById("product_input_modelnumber").value = "";
+        document.getElementById("product_input_modelnumber_list").innerHTML = "";
 
-        //document.getElementById("product_input_specification").value = "";
-        //document.getElementById("product_input_specification_list").innerHTML = "";
+        document.getElementById("product_input_specification").value = "";
+        document.getElementById("product_input_specification_list").innerHTML = "";
     }
 
     function getFormData() {
@@ -579,17 +582,17 @@ $users = find_all('users');
                             <div class="form-group">
                                 <label>物料名称:</label>
                                 <div class="input-group col-md-12">
-                                    <!--<input type="text" id="product_name_info" class="form-control"
+                                    <input type="text" id="product_name_info" class="form-control"
                                            list="product_name_info_list"
                                            onchange="updateSpecification()"
-                                           name="product-quantity" placeholder="选择或输入">-->
-                                    <select id="product_name_info_list" class="form-control"
-                                            onchange="updateSpecification()">
+                                           name="product-quantity" placeholder="选择或输入">
+                                    <datalist id="product_name_info_list" class="form-control"
+                                            style="display: none;">
                                         <?php foreach ($products as $product): ?>
                                             <option data-id="<?php echo $product['id'] ?>"
                                                     value="<?php echo $product['name'] ?>"><?php echo $product['name'] ?></option>
                                         <?php endforeach; ?>
-                                    </select>
+                                    </datalist>
                                 </div>
                             </div>
                         </div>
@@ -598,14 +601,12 @@ $users = find_all('users');
                             <div class="form-group">
                                 <label for="qty">物料规格:</label>
                                 <div class="input-group col-md-12">
-                                    <!--<input type="text" class="form-control" list="product_input_specification_list"
+                                    <input type="text" class="form-control" list="product_input_specification_list"
                                            id="product_input_specification"
                                            name="product-quantity" placeholder="选择或输入"
-                                           onchange="updateModelnumber()">-->
-                                    <select id="product_input_specification_list" class="form-control"
-                                            onchange="updateModelnumber()">
-
-                                    </select>
+                                           onchange="updateModelnumber()">
+                                    <datalist id="product_input_specification_list" class="form-control" style="display: none;" >
+                                    </datalist>
                                     <span>
                                         <div id="specification_loading"></div>
                                     </span>
@@ -616,17 +617,17 @@ $users = find_all('users');
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="qty">物料型号:</label>
-                                <!--<input type="text" class="form-control" list="product_input_modelnumber_list"
+                                <input type="text" class="form-control" list="product_input_modelnumber_list"
                                        id="product_input_modelnumber" onchange="updateUnitAddType()"
-                                       placeholder="选择或输入">-->
-                                <div class="input-group col-md-12">
-                                    <select id="product_input_modelnumber_list" class="form-control"
+                                       placeholder="选择或输入">
+
+                                    <datalist id="product_input_modelnumber_list" class="form-control" style="display:none;"
                                             onchange="updateUnitAddType()">
-                                    </select>
+                                    </datalist>
                                     <span>
                                     <div id="modelnumber_loading"></div>
                                 </span>
-                                </div>
+                                
                             </div>
                         </div>
 
