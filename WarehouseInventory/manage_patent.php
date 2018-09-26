@@ -3,7 +3,7 @@
 
 <?php
 $page_title = '合同详情';
-page_require_level(2);
+page_require_level("60000");
 
 function get_patent_details()
 {

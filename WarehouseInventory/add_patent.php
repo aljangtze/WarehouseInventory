@@ -2,7 +2,7 @@
 $page_title = '填写专利信息';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
-page_require_level(2);
+page_require_level("60000");
 $rk_code_info = getGoDownCode();
 ?>
 
@@ -103,7 +103,7 @@ $rk_code_info = getGoDownCode();
                 //$("#myModal").modal();
 
 
-                alert("提交入库单成功");
+                alert("保存专利信息成功");
                 //location.reload();
                 //document.getElementById("head_msg_info").innerHTML = msg;
             },
