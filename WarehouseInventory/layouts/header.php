@@ -27,6 +27,11 @@
     <link rel="stylesheet" href="libs/css/main.css"/>
     <link rel="stylesheet" href="libs/css/bootstrap-editable.css"/>
 
+    <link  rel="stylesheet"  href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+    <link  rel="stylesheet"  href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.dataTables.min.css"/>
+    <link rel="stylesheet" href=" https://cdn.datatables.net/fixedcolumns/3.2.6/css/fixedColumns.dataTables.min.css"/>
+
 </head>
 <body>
 <script type="text/javascript" src="libs/js/jquery.min.js"></script>
@@ -37,11 +42,22 @@
 <script type="text/javascript" src="libs/js/bootstrap-table-zh-CN.min.js"></script>
 <script type="text/javascript" src="libs/js/bootstrap-editable.js"></script>
 <script type="text/javascript" src="libs/js/bootstrap-table-multiple-sort.js"></script>
+<script type="text/javascript" src="libs/js/bootstrap-table-export.js"></script>
+<script type="text/javascript" src="libs/js/bootstrap-table-filter-control.js"></script>
+<script src="libs/js/tableExport.js"></script>
 <script src="http://open.sojson.com/common/html5/html5shiv.js"></script>
 <script src="http://open.sojson.com/common/html5/respond.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+<script src="https://cdn.datatables.net/fixedcolumns/3.2.6/js/dataTables.fixedColumns.min.js"></script>
 
 <script src="libs/js/spin.min.js"></script>
 <script src="libs/js/vue.min.js"></script>
+
 
 <script type="text/javascript" src="libs/js/jszip.js"></script>
 <script type="text/javascript" src="libs/js/xlsx.full.min.js"></script>
