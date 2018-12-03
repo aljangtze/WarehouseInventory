@@ -6,7 +6,18 @@ page_require_level("60000");
 ?>
 
 <?php include_once('layouts/header.php'); ?>
-
+<?php
+function find_last_project_code()
+{
+    global $db;
+    $sql = $db->query("select project_code from patent order by project_code desc limit 1");
+    if ($result = $db->fetch_assoc($sql))
+        return $result;
+    else
+        return null;
+}
+$patentData = find_last_project_code();
+?>
 <script type="text/javascript">
     function validateData(data, info, flag) {
         var a = data;
@@ -121,7 +132,7 @@ page_require_level("60000");
                             <label class="col-sm-2 control-label">方案号</label>
                             <div class="col-sm-3">
                                 <input class="form-control" name="project_code"  id="project_code" type="text"
-                                       placeholder="当前使用的最后一个方案号是:RMI15001" value="">
+                                       placeholder="<?php echo '当前使用的最后一个方案号是:'.$patentData['project_code'];?>" value="">
                             </div>
                         </div>
                         <div class="form-group">

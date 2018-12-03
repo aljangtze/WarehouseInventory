@@ -117,7 +117,6 @@
         <ul class="nav submenu">
             <li><a href="add_patent.php">新增专利 </a></li>
             <li><a href="manage_patent.php">专利信息一览</a></li>
-            <li><a href="daily_sales.php">Daily sales</a></li>
         </ul>
     </li>
     <li>
